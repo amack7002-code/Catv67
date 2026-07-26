@@ -14288,3 +14288,78 @@ run(function()
         List = WinEffectName
     })
 end)
+
+run(function()
+    local originalAmbient
+    local originalOutdoorAmbient
+
+    local ChillLight = vape.Categories.Render:CreateModule({
+        Name = "Chill Lighting",
+        HoverText = "Changes lighting to a chill cyan/teal theme",
+        Function = function(callback)
+            if callback then
+                -- Save original values
+                originalAmbient = game.Lighting.Ambient
+                originalOutdoorAmbient = game.Lighting.OutdoorAmbient
+
+                -- Apply chill lighting
+                game.Lighting.Ambient = Color3.fromRGB(32, 212, 212)
+                game.Lighting.OutdoorAmbient = Color3.fromRGB(32, 212, 212)
+                
+                -- Optional: You can also adjust more properties
+                -- game.Lighting.Brightness = 1.5
+                -- game.Lighting.ClockTime = 14
+            else
+                -- Restore original lighting
+                if originalAmbient then
+                    game.Lighting.Ambient = originalAmbient
+                end
+                if originalOutdoorAmbient then
+                    game.Lighting.OutdoorAmbient = originalOutdoorAmbient
+                end
+            end
+        end,
+        Default = false
+    })
+end)
+
+run(function()
+    local ChatModule = vape.Categories.Render:CreateModule({
+        Name = "Chat Position",
+        HoverText = "Changes the position of the chat window",
+        Function = function(callback)
+            if callback then
+                -- Move chat down
+                game:GetService("StarterGui"):SetCore("ChatWindowPosition", UDim2.new(0, 0, 0, 200))
+            else
+                -- Reset to default position
+                game:GetService("StarterGui"):SetCore("ChatWindowPosition", UDim2.new(0, 0, 0, 0))
+            end
+        end,
+        Default = false
+    })
+end)
+
+run(function()
+    local ChatCrasherThread = nil
+
+    local ChatModule = vape.Categories.Utility:CreateModule({
+        Name = "ChatCrasher",
+        HoverText = "Disables Chat",
+        Function = function(callback)
+            if callback then
+                ChatCrasherThread = task.spawn(function()
+                    while task.wait(1.7) do
+                        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(" ", "All")
+                    end
+                end)
+            else
+                if ChatCrasherThread then
+                    task.cancel(ChatCrasherThread)
+                    ChatCrasherThread = nil
+                end
+            end
+        end,
+        Default = false
+    })
+end)
