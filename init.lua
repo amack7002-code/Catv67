@@ -29,7 +29,7 @@ local function downloadFile(path, func)
 			downloader.Text = 'Downloading '.. path
 		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/'..select(1, path:gsub('catnextwrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -57,7 +57,7 @@ local function wipeFolder(path)
 end
 
 
-for _, folder in {'catrewrite', 'catrewrite/games', 'catrewrite/profiles', 'catrewrite/assets', 'catrewrite/libraries', 'catrewrite/guis'} do
+for _, folder in {'catnextwrite', 'catnextwrite/games', 'catnextwrite/profiles', 'catnextwrite/assets', 'catnextwrite/libraries', 'catnextwrite/guis'} do
 	if not isfolder(folder) then
 		downloader.Text = 'Downloading '.. folder
 		makefolder(folder)
@@ -68,25 +68,25 @@ if not shared.VapeDeveloper then
 	local commit = license.Commit or nil
 	if not commit then
 		local _, subbed = pcall(function() 
-			return game:HttpGet('https://github.com/MaxlaserTech/CatV6') 
+			return game:HttpGet('https://github.com/amack7002-code/Catv67') 
 		end)
 		commit = subbed:find('currentOid')
 		commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 		commit = commit and #commit == 40 and commit or 'main'
-	end
-	if commit == 'main' or (isfile('catrewrite/profiles/commit.txt') and readfile('catrewrite/profiles/commit.txt') or '') ~= commit then
-		if commit ~= 'main' and isfile('catrewrite/profiles/commit.txt') then
-			shared.updated = readfile('catrewrite/profiles/commit.txt')
+	endcatnextwrite
+	if commit == 'main' or (isfile('/profiles/commit.txt') and readfile('catnextwrite/profiles/commit.txt') or '') ~= commit then
+		if commit ~= 'main' and isfile('catnextwrite/profiles/commit.txt') then
+			shared.updated = readfile('catnextwrite/profiles/commit.txt')
 		end
-		wipeFolder('catrewrite')
-		wipeFolder('catrewrite/games')
-		wipeFolder('catrewrite/guis')
-		wipeFolder('catrewrite/libraries')
+		wipeFolder('catnextwrite')
+		wipeFolder('catnextwrite/games')
+		wipeFolder('catnextwrite/guis')
+		wipeFolder('catnextwrite/libraries')
 	end
-	writefile('catrewrite/profiles/commit.txt', commit)
-	if #listfiles('catrewrite/profiles') < 4 then
+	writefile('catnextwrite/profiles/commit.txt', commit)
+	if #listfiles('catnextwrite/profiles') < 4 then
 		local req = request({
-			Url = 'https://api.github.com/repos/maxlasertech/catv6/contents/profiles',
+			Url = 'https://api.github.com/repos/amack7002-code/Catv67/contents/profiles',
 			Method = 'GET'
 		})
 		if req.StatusCode == 200 then
@@ -94,7 +94,7 @@ if not shared.VapeDeveloper then
 			if body and typeof(body) == 'table' then
 				for _, v in body do
 					if v.type == 'file' then
-						pcall(downloadFile, 'catrewrite/'.. ({v.path:gsub(' ', '%%20')})[1])
+						pcall(downloadFile, 'catnextwrite/'.. ({v.path:gsub(' ', '%%20')})[1])
 					end
 				end
 			end
@@ -103,4 +103,4 @@ if not shared.VapeDeveloper then
 end
 
 downloader.Text = ''
-return loadstring(downloadFile('catrewrite/main.lua'), 'main')(license)
+return loadstring(downloadFile('catnextwrite/main.lua'), 'main')(license)

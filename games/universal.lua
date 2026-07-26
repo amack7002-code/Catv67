@@ -14,7 +14,7 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/'..select(1, path:gsub('catnextwrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -76,7 +76,7 @@ local function addBlur(parent)
 	blur.Size = UDim2.new(1, 89, 1, 52)
 	blur.Position = UDim2.fromOffset(-48, -31)
 	blur.BackgroundTransparency = 1
-	blur.Image = getcustomasset('catrewrite/assets/new/blur.png')
+	blur.Image = getcustomasset('catnextwrite/assets/new/blur.png')
 	blur.ScaleType = Enum.ScaleType.Slice
 	blur.SliceCenter = Rect.new(52, 31, 261, 502)
 	blur.Parent = parent
@@ -232,7 +232,7 @@ local function motorMove(target, cf)
 	task.delay(0, part.Destroy, part)
 end
 
-local hash = loadstring(downloadFile('catrewrite/libraries/hash.lua'), 'hash')()
+local hash = loadstring(downloadFile('catnextwrite/libraries/hash.lua'), 'hash')()
 local prediction = setmetatable({}, {
 	__index = function(self, key)
 		local implementation = vape.Libraries.prediction
@@ -261,7 +261,7 @@ local prediction = setmetatable({}, {
 		return forward
 	end
 })
-entitylib = loadstring(downloadFile('catrewrite/libraries/entity.lua'), 'entitylibrary')()
+entitylib = loadstring(downloadFile('catnextwrite/libraries/entity.lua'), 'entitylibrary')()
 local whitelist = {
 	alreadychecked = {},
 	customtags = {},
@@ -677,7 +677,7 @@ run(function()
 		if success then
 			return sendToast({
 				toastTitle = text,
-				iconImage = getcustomasset('catrewrite/assets/new/vape.png'),
+				iconImage = getcustomasset('catnextwrite/assets/new/vape.png'),
 				swipeUpDismiss = true,
 				onActivated = function() end
 			})
@@ -748,7 +748,7 @@ run(function()
 		iconframe.Parent = mainframe
 		local icon = Instance.new('ImageLabel')
 		icon.Size = UDim2.fromOffset(36, 36)
-		icon.Image = getcustomasset('catrewrite/assets/new/vape.png')
+		icon.Image = getcustomasset('catnextwrite/assets/new/vape.png')
 		icon.BackgroundTransparency = 1
 		icon.Parent = iconframe
 		constraint.MaxSize = Vector2.new(math.max(getfontsize(text, 20, textlabel.FontFace).X + 80, 600), math.huge)
@@ -784,7 +784,7 @@ run(function()
 
 		if not first or whitelist.textdata ~= whitelist.olddata then
 			if not first then
-				whitelist.olddata = isfile('catrewrite/profiles/whitelist.json') and readfile('catrewrite/profiles/whitelist.json') or nil
+				whitelist.olddata = isfile('catnextwrite/profiles/whitelist.json') and readfile('catnextwrite/profiles/whitelist.json') or nil
 			end
 
 			local suc, res = pcall(function()
@@ -828,7 +828,7 @@ run(function()
 				end
 				whitelist.olddata = whitelist.textdata
 				pcall(function()
-					writefile('catrewrite/profiles/whitelist.json', whitelist.textdata)
+					writefile('catnextwrite/profiles/whitelist.json', whitelist.textdata)
 				end)
 			end
 
@@ -3704,7 +3704,7 @@ run(function()
     	arrow.BackgroundTransparency = 1
     	arrow.BorderSizePixel = 0
     	arrow.Visible = false
-    	arrow.Image = getcustomasset('catrewrite/assets/new/arrowmodule.png')
+    	arrow.Image = getcustomasset('catnextwrite/assets/new/arrowmodule.png')
     	arrow.ImageColor3 = entitylib.getEntityColor(ent) or Color3.fromHSV(Color.Hue, Color.Sat, Color.Value)
     	arrow.Parent = Folder
     	Reference[ent] = arrow
@@ -5476,7 +5476,7 @@ run(function()
 
     Radar = vape:CreateOverlay({
     	Name = 'Radar',
-    	Icon = getcustomasset('catrewrite/assets/new/radaricon.png'),
+    	Icon = getcustomasset('catnextwrite/assets/new/radaricon.png'),
     	Size = UDim2.fromOffset(14, 14),
     	Position = UDim2.fromOffset(12, 13),
     	Function = function(callback)
@@ -5697,7 +5697,7 @@ run(function()
 
     SessionInfo = vape:CreateOverlay({
     	Name = 'Session Info',
-    	Icon = getcustomasset('catrewrite/assets/new/textguiicon.png'),
+    	Icon = getcustomasset('catnextwrite/assets/new/textguiicon.png'),
     	Size = UDim2.fromOffset(16, 12),
     	Position = UDim2.fromOffset(12, 14),
     	Function = function(callback)
@@ -5767,8 +5767,8 @@ run(function()
     Hide = SessionInfo:CreateTextList({
     	Name = 'Blacklist',
     	Tooltip = 'Name of entry to hide.',
-    	Icon = getcustomasset('catrewrite/assets/new/blockedicon.png'),
-    	Tab = getcustomasset('catrewrite/assets/new/blockedtab.png'),
+    	Icon = getcustomasset('catnextwrite/assets/new/blockedicon.png'),
+    	Tab = getcustomasset('catnextwrite/assets/new/blockedtab.png'),
     	TabSize = UDim2.fromOffset(21, 16),
     	Color = Color3.fromRGB(250, 50, 56)
     })
