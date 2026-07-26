@@ -55,7 +55,7 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/'..select(1, path:gsub('catnextwrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			task.spawn(error, res)
@@ -81,7 +81,7 @@ local function finishLoading()
 			local teleportScript = [[
 				shared.vapereload = true
 				if shared.VapeDeveloper then
-					loadstring(readfile('catrewrite/main.lua'), 'main')(_scriptconfig)
+					loadstring(readfile('catnextwrite/main.lua'), 'main')(_scriptconfig)
 				else
 					loadstring(game:HttpGet('https://api.catvape.dev/script?key=_key'), 'init')(_scriptconfig)
 				end
@@ -116,28 +116,28 @@ local function finishLoading()
 			vape:CreateNotification('Finished Loading', (getgenv().catname and `Authenticated as {getgenv().catname} with {getgenv().catrole}, ` or '').. (vape.VapeButton and 'Press the button in the top right' or 'Press '..table.concat(vape.Keybind, ' + '):upper())..' to open GUI', 5)
 			task.delay(0.05 + cloneref(game:GetService('RunService')).PostSimulation:Wait(), function()
 				if shared.updated then
-					vape:CreateNotification('Cat', `Script has updated from {shared.updated} to {readfile('catrewrite/profiles/commit.txt')}`, 10, 'info')
+					vape:CreateNotification('Cat', `Script has updated from {shared.updated} to {readfile('catnextwrite/profiles/commit.txt')}`, 10, 'info')
 				end
 			end)
 		end
 	end
 end
 
-downloadFile('catrewrite/libraries/pathfind.lua')
-if not isfile('catrewrite/profiles/gui.txt') then
-	writefile('catrewrite/profiles/gui.txt', 'new')
+downloadFile('catnextwrite/libraries/pathfind.lua')
+if not isfile('catnextwrite/profiles/gui.txt') then
+	writefile('catnextwrite/profiles/gui.txt', 'new')
 end
 local gui = 'new'--readfile('catrewrite/profiles/gui.txt')
 
-if not isfolder('catrewrite/assets/'..gui) then
-	makefolder('catrewrite/assets/'..gui)
+if not isfolder('catnextwrite/assets/'..gui) then
+	makefolder('catnextwrite/assets/'..gui)
 end
-if not isfile('catrewrite/profiles/commit.txt') then
-	writefile('catrewrite/profiles/commit.txt', 'main')
+if not isfile('catnextwrite/profiles/commit.txt') then
+	writefile('catnextwrite/profiles/commit.txt', 'main')
 end
 
 getgenv().used_init = true
-vape = loadstring(downloadFile('catrewrite/guis/'..gui..'.lua'), 'gui')(license)
+vape = loadstring(downloadFile('catnextwrite/guis/'..gui..'.lua'), 'gui')(license)
 _G.vape = vape
 shared.vape = vape
 shared.vapesmooth = true--table.find({'Opiumware', 'Madium', 'Potassium'}, ({identifyexecutor()})[1]) and true or false
@@ -149,23 +149,23 @@ if shared.maincat then
 end
 
 if not shared.VapeIndependent then
-	loadstring(downloadFile('catrewrite/games/universal.lua'), 'universal')(license)
-	if isfile('catrewrite/games/'..game.PlaceId..'.lua') then
-		loadstring(readfile('catrewrite/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
+	loadstring(downloadFile('catnextwrite/games/universal.lua'), 'universal')(license)
+	if isfile('catnextwrite/games/'..game.PlaceId..'.lua') then
+		loadstring(readfile('catnextwrite/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
 	else
 		if not shared.VapeDeveloper then
 			local suc, res = pcall(function()
-				return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/games/'..game.PlaceId..'.lua', true)
+				return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/games/'..game.PlaceId..'.lua', true)
 			end)
 			if suc and res ~= '404: Not Found' then
-				loadstring(downloadFile('catrewrite/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
+				loadstring(downloadFile('catnextwrite/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
 			end
 		end
 	end
 	if vape.ThreadFix then
 		setthreadidentity(8)
 	end
-	loadstring(downloadFile('catrewrite/libraries/premium.lua'), 'premium')(license)
+	loadstring(downloadFile('catnextwrite/libraries/premium.lua'), 'premium')(license)
 	finishLoading()
 else
 	vape.Init = finishLoading
