@@ -8427,3 +8427,121 @@ run(function()
     	end
     })
 end)
+
+run(function()
+    local AutoReport = vape.Categories.Legit:CreateModule({
+        Name = "Auto Report",
+        HoverText = "Automatically reports players for toxic chat",
+        Enabled = false
+    })
+
+    local players = game:GetService("Players")
+    local lplr = players.LocalPlayer
+
+    local words = {
+        ['gay'] = 'Bullying',
+        ['trans'] = 'Bullying',
+        ['lgbt'] = 'Bullying',
+        ['lesbian'] = 'Bullying',
+        ['suicide'] = 'Bullying',
+        ['cum'] = 'Swearing',
+        ['f@g0t'] = 'Bullying',
+        ['cock'] = 'Swearing',
+        ['penis'] = 'Swearing',
+        ['furry'] = 'Bullying',
+        ['furries'] = 'Bullying',
+        ['dick'] = 'Swearing',
+        ['nigger'] = 'Bullying',
+        ['bible'] = 'Bullying',
+        ['nigga'] = 'Bullying',
+        ['cheat'] = 'Scamming',
+        ['report'] = 'Bullying',
+        ['niga'] = 'Bullying',
+        ['bitch'] = 'Bullying',
+        ['sex'] = 'Swearing',
+        ['cringe'] = 'Bullying',
+        ['trash'] = 'Bullying',
+        ['allah'] = 'Bullying',
+        ['dumb'] = 'Bullying',
+        ['idiot'] = 'Bullying',
+        ['kid'] = 'Bullying',
+        ['clown'] = 'Bullying',
+        ['bozo'] = 'Bullying',
+        ['faggot'] = 'Bullying',
+        ['autist'] = 'Bullying',
+        ['autism'] = 'Bullying',
+        ['get a life'] = 'Bullying',
+        ['nolife'] = 'Bullying',
+        ['no life'] = 'Bullying',
+        ['adopted'] = 'Bullying',
+        ['skill issue'] = 'Bullying',
+        ['muslim'] = 'Bullying',
+        ['gender'] = 'Bullying',
+        ['parent'] = 'Bullying',
+        ['islam'] = 'Bullying',
+        ['christian'] = 'Bullying',
+        ['noob'] = 'Bullying',
+        ['retard'] = 'Bullying',
+        ['burn'] = 'Bullying',
+        ['stupid'] = 'Bullying',
+        ['wthf'] = 'Swearing',
+        ['pride'] = 'Bullying',
+        ['mother'] = 'Bullying',
+        ['father'] = 'Bullying',
+        ['homo'] = 'Bullying',
+        ['hate'] = 'Bullying',
+        ['exploit'] = 'Scamming',
+        ['hack'] = 'Scamming',
+        ['download'] = 'Scamming',
+        ['youtube'] = 'Offsite Links',
+        ['racist'] = 'Bullying',
+        ['covid'] = 'Bullying',
+        ['virus'] = 'Bullying',
+        ['mask'] = 'Bullying',
+        ['pandemic'] = 'Bullying',
+        ['china'] = 'Bullying',
+        ['vaccine'] = 'Bullying',
+        ['politics'] = 'Bullying',
+        ['trump'] = 'Bullying',
+        ['biden'] = 'Bullying',
+        ['fatty'] = 'Bullying',
+        ['hacker'] = 'Bullying'
+    }
+
+    local cooldown = false
+
+    local function reportPlayer(plr, reason, badWord)
+        if cooldown or not plr or plr == lplr then return end
+        cooldown = true
+
+        local success, err = pcall(function()
+            players:ReportAbuse(plr, reason, "Breaking TOS - Toxic Chat")
+        end)
+
+        if success then
+            vape:CreateNotification("Auto Report", `Reported {plr.Name} for "{badWord}"`, 4, "info")
+        else
+            warn(`[Auto Report] Failed to report {plr.Name}: {err}`)
+        end
+
+        task.wait(8) -- Increased cooldown to reduce rate-limit / detection risk
+        cooldown = false
+    end
+
+    AutoReport:Clean(players.PlayerChatted:Connect(function(chatType, plr, msg)
+        if not AutoReport.Enabled then return end
+        if chatType == Enum.PlayerChatType.Whisper or plr == lplr then return end
+        if not plr or not msg then return end
+
+        msg = string.lower(msg)
+
+        for trigger, reason in pairs(words) do
+            if string.find(msg, trigger, 1, true) then
+                reportPlayer(plr, reason, trigger)
+                break -- Prevent multiple reports from one message
+            end
+        end
+    end))
+
+    vape:CreateNotification("Auto Report", "Auto Report module loaded successfully", 3, "info")
+end)
