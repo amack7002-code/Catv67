@@ -74,7 +74,7 @@ if not shared.VapeDeveloper then
 		commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 		commit = commit and #commit == 40 and commit or 'main'
 	endcatnextwrite
-	if commit == 'main' or (isfile('/profiles/commit.txt') and readfile('catnextwrite/profiles/commit.txt') or '') ~= commit then
+	if commit == 'main' or (isfile('catnextwrite/profiles/commit.txt') and readfile('catnextwrite/profiles/commit.txt') or '') ~= commit then
 		if commit ~= 'main' and isfile('catnextwrite/profiles/commit.txt') then
 			shared.updated = readfile('catnextwrite/profiles/commit.txt')
 		end
