@@ -11,7 +11,7 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'.. readfile('catrewrite/profiles/commit.txt').. '/'.. select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnextwrite/profiles/commit.txt').. '/'.. select(1, path:gsub('catnextwrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then error(res) end
 		if path:find('.lua') then res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\\n'.. res end
@@ -26,8 +26,8 @@ if isfile('catrewrite/games/' .. vape.Place .. '.lua') then
 else
 	if not shared.VapeDeveloper then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'.. readfile('catrewrite/profiles/commit.txt').. '/games/'.. vape.Place.. '.lua', true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnextwrite/profiles/commit.txt').. '/games/'.. vape.Place.. '.lua', true)
 		end)
-		if suc and res ~= '404: Not Found' then loadstring(downloadFile('catrewrite/games/' .. vape.Place .. '.lua'), tostring("game micro"))() end
+		if suc and res ~= '404: Not Found' then loadstring(downloadFile('catnextwrite/games/' .. vape.Place .. '.lua'), tostring("game micro"))() end
 	end
 end

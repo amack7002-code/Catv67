@@ -152,9 +152,14 @@ local function finishLoading()
 	end
 end
 
+<<<<<<< HEAD
 downloadFile('catnextwrite/libraries/pathfind.lua')
 if not isfile('catnextwrite/profiles/gui.txt') then
 	writefile('catnextwrite/profiles/gui.txt', 'new')
+=======
+if not isfile('catrewrite/profiles/gui.txt') then
+	writefile('catrewrite/profiles/gui.txt', 'new')
+>>>>>>> 2138e26d40e35ae0fbc5f1cdc3cf81b8fa74d592
 end
 local gui = 'new'--readfile('catnextwrite/profiles/gui.txt')
 
