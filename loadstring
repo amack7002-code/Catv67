@@ -1,1 +1,1 @@
-script_key = "KEY-HERE"; loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua'), 'init.lua')({})
+script_key = "KEY-HERE"; loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua'))('init.lua')({})
