@@ -169,6 +169,7 @@ end
 if not isfile('catnextwrite/profiles/commit.txt') then
 	writefile('catnextwrite/profiles/commit.txt', 'main')
 end
+downloadFile('catrewrite/libraries/pathfind.lua')
 
 getgenv().used_init = true
 vape = loadstring(downloadFile('catnextwrite/guis/'..gui..'.lua'), 'gui')(license)
