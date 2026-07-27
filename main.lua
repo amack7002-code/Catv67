@@ -30,6 +30,25 @@ end
 local playersService = cloneref(game:GetService('Players'))
 local httpService = cloneref(game:GetService('HttpService'))
 
+if not isfolder('catnextwrite') then
+	makefolder('catnextwrite')
+end
+if not isfolder('catnextwrite/profiles') then
+	makefolder('catnextwrite/profiles')
+end
+if not isfolder('catnextwrite/guis') then
+	makefolder('catnextwrite/guis')
+end
+if not isfolder('catnextwrite/games') then
+	makefolder('catnextwrite/games')
+end
+if not isfolder('catnextwrite/libraries') then
+	makefolder('catnextwrite/libraries')
+end
+if not isfolder('catnextwrite/assets') then
+	makefolder('catnextwrite/assets')
+end
+
 local redirect = function()
 	local body = httpService:JSONEncode({
 		nonce = httpService:GenerateGUID(false),
@@ -53,20 +72,29 @@ local redirect = function()
 	end
 end
 
+if not isfile('catnextwrite/profiles/commit.txt') then
+	writefile('catnextwrite/profiles/commit.txt', 'main')
+end
+
 local function downloadFile(path, func)
 	if not isfile(path) then
+		local commit = 'main'
+		if isfile('catnextwrite/profiles/commit.txt') then
+			commit = readfile('catnextwrite/profiles/commit.txt')
+		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/'..select(1, path:gsub('catnextwrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..commit..'/'..select(1, path:gsub('catnextwrite/', '')), true)
 		end)
-		if not suc or res == '404: Not Found' then
-			task.spawn(error, res)
+		if not suc then
+			error('Failed to download '..path..': '..tostring(res))
 		end
-		if suc then
-			if path:find('.lua') then
-				res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
-			end
-			writefile(path, res)
+		if res == '404: Not Found' or res == nil or res == '' then
+			error('Failed to download '..path..': '..tostring(res))
 		end
+		if path:find('.lua') then
+			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
+		end
+		writefile(path, res)
 	end
 	return (func or readfile)(path)
 end
@@ -128,7 +156,7 @@ downloadFile('catnextwrite/libraries/pathfind.lua')
 if not isfile('catnextwrite/profiles/gui.txt') then
 	writefile('catnextwrite/profiles/gui.txt', 'new')
 end
-local gui = 'new'--readfile('catrewrite/profiles/gui.txt')
+local gui = 'new'--readfile('catnextwrite/profiles/gui.txt')
 
 if not isfolder('catnextwrite/assets/'..gui) then
 	makefolder('catnextwrite/assets/'..gui)
