@@ -142,10 +142,10 @@ local function finishLoading()
 			task.wait(0.1)
 		end
 		if not shared.vapereload then
-			vape:CreateNotification('Finished Loading', (getgenv().catname and `Authenticated as {getgenv().catname} with {getgenv().catrole}, ` or '').. (vape.VapeButton and 'Press the button in the top right' or 'Press '..table.concat(vape.Keybind, ' + '):upper())..' to open GUI', 5)
+			vape:CreateNotification('Finished Loading', (getgenv().catname and ('Authenticated as '..tostring(getgenv().catname)..' with '..tostring(getgenv().catrole)..', ') or '').. (vape.VapeButton and 'Press the button in the top right' or ('Press '..table.concat(vape.Keybind, ' + '):upper()..' to open GUI')), 5)
 			task.delay(0.05 + cloneref(game:GetService('RunService')).PostSimulation:Wait(), function()
 				if shared.updated then
-					vape:CreateNotification('Cat', `Script has updated from {shared.updated} to {readfile('catnextwrite/profiles/commit.txt')}`, 10, 'info')
+					vape:CreateNotification('Cat', "Script has updated from "..tostring(shared.updated).." to "..tostring(readfile('catnextwrite/profiles/commit.txt')), 10, 'info')
 				end
 			end)
 		end
@@ -164,7 +164,7 @@ end
 if not isfile('catnextwrite/profiles/commit.txt') then
 	writefile('catnextwrite/profiles/commit.txt', 'main')
 end
-downloadFile('catrewrite/libraries/pathfind.lua')
+downloadFile('catnextwrite/libraries/pathfind.lua')
 
 getgenv().used_init = true
 vape = loadstring(downloadFile('catnextwrite/guis/'..gui..'.lua'), 'gui')(license)
