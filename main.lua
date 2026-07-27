@@ -8,8 +8,9 @@ end
 if shared.vape then shared.vape:Uninject() end
 
 local vape
+local original_loadstring = loadstring
 local loadstring = function(...)
-	local res, err = loadstring(...)
+	local res, err = original_loadstring(...)
 	if err and vape then
 		vape:CreateNotification('Vape', 'Failed to load : '..err, 30, 'alert')
 	end
