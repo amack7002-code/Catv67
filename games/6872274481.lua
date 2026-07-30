@@ -962,9 +962,9 @@ run(function()
 								local name = bedwars.StatusEffectMeta[({i:gsub('StatusEffect_', '')})[1]]
 								if bedwars.StatusEffectMeta[name] then
 									name = bedwars.StatusEffectMeta[name]
-									for num = 1, 3 do
-										name = name:gsub(`_{num}`, '')
-									end
+                                    for num = 1, 3 do
+                                        name = name:gsub("_" .. tostring(num), '')
+                                    end
 
 									if bedwars.EnchantMeta[name] then
 										return bedwars.EnchantMeta[name].image
@@ -2743,7 +2743,7 @@ run(function()
                             Activated = os.clock()
     
                             if Notify.Enabled then
-                                notif('AntiDeath', `Health below {Threshold.Value}%`, 12, 'warning')
+                                notif('AntiDeath', 'Health below ' .. tostring(Threshold.Value) .. '%', 12, 'warning')
                             end
     
                             if Mode.Value == 'Teleport' then
@@ -4221,13 +4221,14 @@ run(function()
     			end
     
     			if position then
-    				if Movement.Value == 'All' then
-    					if not MouseTPs.Kits(position) and not MouseTPs.Items(position) then
-    						notif('MouseTP', 'Couldn\'t find an item or a kit to teleport with', 5)
-    					end
-    				elseif not MouseTPs[Movement.Value](position) then
-    					notif('MouseTP', `Couldn\'t find {Movement.Value:lower()} to teleport with`, 5)
-    				end
+                        if Movement.Value == 'All' then
+                        if not MouseTPs.Kits(position) and not MouseTPs.Items(position) then
+                        notif('MouseTP', 'Couldn\'t find an item or a kit to teleport with', 5)
+                    end
+                    elseif not MouseTPs[Movement.Value](position) then
+                        notif('MouseTP', "Couldn't find " .. Movement.Value:lower() .. " to teleport with", 5)
+                    end
+                    end
     			else
     				notif('MouseTP', 'No position found.', 5)
     			end
@@ -5574,7 +5575,7 @@ run(function()
     local function Added(ent)
     	local Name = playersService:GetNameFromUserIdAsync(ent:GetAttribute('PlacedByUserId')) or 'Unknown'
 
-    	Strings[ent] = `{Name}'s beehive | %s Bee%s`
+        Strings[ent] = Name .. "'s beehive | %s Bee%s"
     	local nametag = Instance.new('TextLabel')
     	nametag.TextSize = 14 * Scale.Value
     	nametag.Font = Enum.Font.Arial
@@ -5876,11 +5877,11 @@ run(function()
     		return
     	end
 
-    	Strings[ent] = `{Name} %s%s`
+        Strings[ent] = Name .. " %s%s"
     	local nametag = Instance.new('TextLabel')
     	nametag.TextSize = 14 * Scale.Value
     	nametag.Font = Enum.Font.Arial
-    	local format = string.format(Strings[ent], `| T{ent:GetAttribute('GeneratorLevel')}`, '')
+        local format = string.format(Strings[ent], '| T' .. tostring(ent:GetAttribute('GeneratorLevel')), '')
     	local size = getfontsize(format, nametag.TextSize, nametag.FontFace, Vector2.new(100000, 100000))
     	nametag.Name = Name
     	nametag.Size = UDim2.fromOffset(size.X + 8, size.Y + 7)
@@ -5937,7 +5938,7 @@ run(function()
     					end
 
     					if (Updates[ent] or 0) > tick() then
-    						nametag.Text = string.format(Strings[ent], `| T{ent:GetAttribute('GeneratorLevel')}`, Cooldown[ent] and ` | {getNumber(Cooldown[ent].Text)}s` or '')
+                            nametag.Text = string.format(Strings[ent], '| T' .. tostring(ent:GetAttribute('GeneratorLevel')), Cooldown[ent] and (' | ' .. getNumber(Cooldown[ent].Text) .. 's') or '')
     						local size = getfontsize(removeTags(nametag.Text), nametag.TextSize, nametag.FontFace, Vector2.new(100000, 100000))
     						nametag.Size = UDim2.fromOffset(size.X + 8, size.Y + 7)
     					end
@@ -8553,7 +8554,7 @@ run(function()
         if not CheatersFlagged[player] then
             CheatersFlagged[player] = true
             whitelist.customtags[player.Name] = {{ text = 'CHEATER', color = Color3.new(1, 0, 0)}}
-            notif('CheatDetector', `{player.Name} flagged for {reason:lower()}ing`, 10, 'info')
+            notif('CheatDetector', player.Name .. ' flagged for ' .. reason:lower() .. 'ing', 10, 'info')
         end
     end
     local function checkPoint(pos, params)

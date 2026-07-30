@@ -61,69 +61,69 @@ local uipallet = {
 }
 
 local getcustomassets = {
-	['catrewrite/assets/new/add.png'] = 'rbxassetid://14368300605',
-	['catrewrite/assets/new/alert.png'] = 'rbxassetid://14368301329',
-	['catrewrite/assets/new/allowedicon.png'] = 'rbxassetid://14368302000',
-	['catrewrite/assets/new/allowedtab.png'] = 'rbxassetid://14368302875',
-	['catrewrite/assets/new/arrowmodule.png'] = 'rbxassetid://14473354880',
-	['catrewrite/assets/new/back.png'] = 'rbxassetid://14368303894',
-	['catrewrite/assets/new/bind.png'] = 'rbxassetid://14368304734',
-	['catrewrite/assets/new/bindbkg.png'] = 'rbxassetid://14368305655',
-	['catrewrite/assets/new/blatanticon.png'] = 'rbxassetid://14368306745',
-	['catrewrite/assets/new/blockedicon.png'] = 'rbxassetid://14385669108',
-	['catrewrite/assets/new/blockedtab.png'] = 'rbxassetid://14385672881',
-	['catrewrite/assets/new/blur.png'] = 'rbxassetid://14898786664',
-	['catrewrite/assets/new/blurnotif.png'] = 'rbxassetid://16738720137',
-	['catrewrite/assets/new/close.png'] = 'rbxassetid://14368309446',
-	['catrewrite/assets/new/closemini.png'] = 'rbxassetid://14368310467',
-	['catrewrite/assets/new/colorpreview.png'] = 'rbxassetid://14368311578',
-	['catrewrite/assets/new/combaticon.png'] = 'rbxassetid://14368312652',
-	['catrewrite/assets/new/customsettings.png'] = 'rbxassetid://14403726449',
-	['catrewrite/assets/new/discord.png'] = '',
-	['catrewrite/assets/new/dots.png'] = 'rbxassetid://14368314459',
-	['catrewrite/assets/new/edit.png'] = 'rbxassetid://14368315443',
-	['catrewrite/assets/new/expandicon.png'] = 'rbxassetid://14368353032',
-	['catrewrite/assets/new/expandright.png'] = 'rbxassetid://14368316544',
-	['catrewrite/assets/new/expandup.png'] = 'rbxassetid://14368317595',
-	['catrewrite/assets/new/friendstab.png'] = 'rbxassetid://14397462778',
-	['catrewrite/assets/new/guisettings.png'] = 'rbxassetid://14368318994',
-	['catrewrite/assets/new/guislider.png'] = 'rbxassetid://14368320020',
-	['catrewrite/assets/new/guisliderrain.png'] = 'rbxassetid://14368321228',
-	['catrewrite/assets/new/guiv4.png'] = 'rbxassetid://14368322199',
-	['catrewrite/assets/new/guivape.png'] = 'rbxassetid://14657521312',
-	['catrewrite/assets/new/info.png'] = 'rbxassetid://14368324807',
-	['catrewrite/assets/new/inventoryicon.png'] = 'rbxassetid://14928011633',
-	['catrewrite/assets/new/legit.png'] = 'rbxassetid://14425650534',
-	['catrewrite/assets/new/legittab.png'] = 'rbxassetid://14426740825',
-	['catrewrite/assets/new/miniicon.png'] = 'rbxassetid://14368326029',
-	['catrewrite/assets/new/notification.png'] = 'rbxassetid://16738721069',
-	['catrewrite/assets/new/overlaysicon.png'] = 'rbxassetid://14368339581',
-	['catrewrite/assets/new/overlaystab.png'] = 'rbxassetid://14397380433',
-	['catrewrite/assets/new/pin.png'] = 'rbxassetid://14368342301',
-	['catrewrite/assets/new/profilesicon.png'] = 'rbxassetid://14397465323',
-	['catrewrite/assets/new/radaricon.png'] = 'rbxassetid://14368343291',
-	['catrewrite/assets/new/rainbow_1.png'] = 'rbxassetid://14368344374',
-	['catrewrite/assets/new/rainbow_2.png'] = 'rbxassetid://14368345149',
-	['catrewrite/assets/new/rainbow_3.png'] = 'rbxassetid://14368345840',
-	['catrewrite/assets/new/rainbow_4.png'] = 'rbxassetid://14368346696',
-	['catrewrite/assets/new/range.png'] = 'rbxassetid://14368347435',
-	['catrewrite/assets/new/rangearrow.png'] = 'rbxassetid://14368348640',
-	['catrewrite/assets/new/rendericon.png'] = 'rbxassetid://14368350193',
-	['catrewrite/assets/new/rendertab.png'] = 'rbxassetid://14397373458',
-	['catrewrite/assets/new/search.png'] = 'rbxassetid://14425646684',
-	['catrewrite/assets/new/targetinfoicon.png'] = 'rbxassetid://14368354234',
-	['catrewrite/assets/new/targetnpc1.png'] = 'rbxassetid://14497400332',
-	['catrewrite/assets/new/targetnpc2.png'] = 'rbxassetid://14497402744',
-	['catrewrite/assets/new/targetplayers1.png'] = 'rbxassetid://14497396015',
-	['catrewrite/assets/new/targetplayers2.png'] = 'rbxassetid://14497397862',
-	['catrewrite/assets/new/targetstab.png'] = 'rbxassetid://14497393895',
-	['catrewrite/assets/new/textguiicon.png'] = 'rbxassetid://14368355456',
-	['catrewrite/assets/new/textv4.png'] = 'rbxassetid://14368357095',
-	['catrewrite/assets/new/textvape.png'] = 'rbxassetid://14368358200',
-	['catrewrite/assets/new/utilityicon.png'] = 'rbxassetid://14368359107',
-	['catrewrite/assets/new/vape.png'] = 'rbxassetid://14373395239',
-	['catrewrite/assets/new/warning.png'] = 'rbxassetid://14368361552',
-	['catrewrite/assets/new/worldicon.png'] = 'rbxassetid://14368362492'
+	['catnextwrite/assets/new/add.png'] = 'rbxassetid://14368300605',
+	['catnextwrite/assets/new/alert.png'] = 'rbxassetid://14368301329',
+	['catnextwrite/assets/new/allowedicon.png'] = 'rbxassetid://14368302000',
+	['catnextwrite/assets/new/allowedtab.png'] = 'rbxassetid://14368302875',
+	['catnextwrite/assets/new/arrowmodule.png'] = 'rbxassetid://14473354880',
+	['catnextwrite/assets/new/back.png'] = 'rbxassetid://14368303894',
+	['catnextwrite/assets/new/bind.png'] = 'rbxassetid://14368304734',
+	['catnextwrite/assets/new/bindbkg.png'] = 'rbxassetid://14368305655',
+	['catnextwrite/assets/new/blatanticon.png'] = 'rbxassetid://14368306745',
+	['catnextwrite/assets/new/blockedicon.png'] = 'rbxassetid://14385669108',
+	['catnextwrite/assets/new/blockedtab.png'] = 'rbxassetid://14385672881',
+	['catnextwrite/assets/new/blur.png'] = 'rbxassetid://14898786664',
+	['catnextwrite/assets/new/blurnotif.png'] = 'rbxassetid://16738720137',
+	['catnextwrite/assets/new/close.png'] = 'rbxassetid://14368309446',
+	['catnextwrite/assets/new/closemini.png'] = 'rbxassetid://14368310467',
+	['catnextwrite/assets/new/colorpreview.png'] = 'rbxassetid://14368311578',
+	['catnextwrite/assets/new/combaticon.png'] = 'rbxassetid://14368312652',
+	['catnextwrite/assets/new/customsettings.png'] = 'rbxassetid://14403726449',
+	['catnextwrite/assets/new/discord.png'] = '',
+	['catnextwrite/assets/new/dots.png'] = 'rbxassetid://14368314459',
+	['catnextwrite/assets/new/edit.png'] = 'rbxassetid://14368315443',
+	['catnextwrite/assets/new/expandicon.png'] = 'rbxassetid://14368353032',
+	['catnextwrite/assets/new/expandright.png'] = 'rbxassetid://14368316544',
+	['catnextwrite/assets/new/expandup.png'] = 'rbxassetid://14368317595',
+	['catnextwrite/assets/new/friendstab.png'] = 'rbxassetid://14397462778',
+	['catnextwrite/assets/new/guisettings.png'] = 'rbxassetid://14368318994',
+	['catnextwrite/assets/new/guislider.png'] = 'rbxassetid://14368320020',
+	['catnextwrite/assets/new/guisliderrain.png'] = 'rbxassetid://14368321228',
+	['catnextwrite/assets/new/guiv4.png'] = 'rbxassetid://14368322199',
+	['catnextwrite/assets/new/guivape.png'] = 'rbxassetid://14657521312',
+	['catnextwrite/assets/new/info.png'] = 'rbxassetid://14368324807',
+	['catnextwrite/assets/new/inventoryicon.png'] = 'rbxassetid://14928011633',
+	['catnextwrite/assets/new/legit.png'] = 'rbxassetid://14425650534',
+	['catnextwrite/assets/new/legittab.png'] = 'rbxassetid://14426740825',
+	['catnextwrite/assets/new/miniicon.png'] = 'rbxassetid://14368326029',
+	['catnextwrite/assets/new/notification.png'] = 'rbxassetid://16738721069',
+	['catnextwrite/assets/new/overlaysicon.png'] = 'rbxassetid://14368339581',
+	['catnextwrite/assets/new/overlaystab.png'] = 'rbxassetid://14397380433',
+	['catnextwrite/assets/new/pin.png'] = 'rbxassetid://14368342301',
+	['catnextwrite/assets/new/profilesicon.png'] = 'rbxassetid://14397465323',
+	['catnextwrite/assets/new/radaricon.png'] = 'rbxassetid://14368343291',
+	['catnextwrite/assets/new/rainbow_1.png'] = 'rbxassetid://14368344374',
+	['catnextwrite/assets/new/rainbow_2.png'] = 'rbxassetid://14368345149',
+	['catnextwrite/assets/new/rainbow_3.png'] = 'rbxassetid://14368345840',
+	['catnextwrite/assets/new/rainbow_4.png'] = 'rbxassetid://14368346696',
+	['catnextwrite/assets/new/range.png'] = 'rbxassetid://14368347435',
+	['catnextwrite/assets/new/rangearrow.png'] = 'rbxassetid://14368348640',
+	['catnextwrite/assets/new/rendericon.png'] = 'rbxassetid://14368350193',
+	['catnextwrite/assets/new/rendertab.png'] = 'rbxassetid://14397373458',
+	['catnextwrite/assets/new/search.png'] = 'rbxassetid://14425646684',
+	['catnextwrite/assets/new/targetinfoicon.png'] = 'rbxassetid://14368354234',
+	['catnextwrite/assets/new/targetnpc1.png'] = 'rbxassetid://14497400332',
+	['catnextwrite/assets/new/targetnpc2.png'] = 'rbxassetid://14497402744',
+	['catnextwrite/assets/new/targetplayers1.png'] = 'rbxassetid://14497396015',
+	['catnextwrite/assets/new/targetplayers2.png'] = 'rbxassetid://14497397862',
+	['catnextwrite/assets/new/targetstab.png'] = 'rbxassetid://14497393895',
+	['catnextwrite/assets/new/textguiicon.png'] = 'rbxassetid://14368355456',
+	['catnextwrite/assets/new/textv4.png'] = 'rbxassetid://14368357095',
+	['catnextwrite/assets/new/textvape.png'] = 'rbxassetid://14368358200',
+	['catnextwrite/assets/new/utilityicon.png'] = 'rbxassetid://14368359107',
+	['catnextwrite/assets/new/vape.png'] = 'rbxassetid://14373395239',
+	['catnextwrite/assets/new/warning.png'] = 'rbxassetid://14368361552',
+	['catnextwrite/assets/new/worldicon.png'] = 'rbxassetid://14368362492'
 }
 
 local isfile = isfile or function(file)
@@ -324,8 +324,9 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		createDownloader(path)
+		local commitFile = isfile('catnextwrite/profiles/commit.txt') and 'catnextwrite/profiles/commit.txt' or 'catrewrite/profiles/commit.txt'
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile(commitFile)..'/'..select(1, path:gsub('catrewrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -339,12 +340,14 @@ local function downloadFile(path, func)
 end
 
 getcustomasset = assetfunction and function(path)
+	path = path:gsub('^catrewrite/', 'catnextwrite/')
 	local suc, res = pcall(downloadFile, path, assetfunction)
 	if suc then
 		return res
 	end
 	return getcustomassets[path] or ''
 end or function(path)
+	path = path:gsub('^catrewrite/', 'catnextwrite/')
 	return getcustomassets[path] or ''
 end
 
@@ -6197,7 +6200,7 @@ profiles:CreateButton({
 			return httpService:JSONDecode(json.Value) 
 		end)
 		if success and result then
-			local awesome = `imported ({#mainapi.Profiles + 1})`
+			local awesome = "imported (" .. tostring(#mainapi.Profiles + 1) .. ")"
 			table.insert(mainapi.Profiles, {Name = awesome, Bind = {}})
 			mainapi:Save(awesome)
 			writefile('catrewrite/profiles/'..awesome..mainapi.Place..'.txt', result.config)

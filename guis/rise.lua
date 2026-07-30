@@ -120,9 +120,9 @@ local themecolors = {
 }
 
 local getcustomassets = {
-	['catrewrite/assets/rise/slice.png'] = 'rbxasset://risesix/slice.png',
-	['catrewrite/assets/rise/blur.png'] = 'rbxasset://risesix/blur.png',
-	['catrewrite/assets/new/blur.png'] = 'rbxassetid://14898786664',
+	['catnextwrite/assets/rise/slice.png'] = 'rbxasset://risesix/slice.png',
+	['catnextwrite/assets/rise/blur.png'] = 'rbxasset://risesix/blur.png',
+	['catnextwrite/assets/new/blur.png'] = 'rbxassetid://14898786664',
 }
 
 local isfile = isfile or function(file)
@@ -243,8 +243,9 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		createDownloader(path)
+		local commitFile = isfile('catnextwrite/profiles/commit.txt') and 'catnextwrite/profiles/commit.txt' or 'catrewrite/profiles/commit.txt'
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile(commitFile)..'/'..select(1, path:gsub('catrewrite/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)

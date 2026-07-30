@@ -8737,11 +8737,11 @@ run(function()
             players:ReportAbuse(plr, reason, "Breaking TOS - Toxic Chat")
         end)
 
-        if success then
-            vape:CreateNotification("Auto Report", `Reported {plr.Name} for "{badWord}"`, 4, "info")
-        else
-            warn(`[Auto Report] Failed to report {plr.Name}: {err}`)
-        end
+		if success then
+			vape:CreateNotification("Auto Report", 'Reported ' .. plr.Name .. ' for "' .. badWord .. '"', 4, "info")
+		else
+			warn("[Auto Report] Failed to report " .. plr.Name .. ": " .. tostring(err))
+		end
 
         task.wait(8) -- Increased cooldown to reduce rate-limit / detection risk
         cooldown = false

@@ -45,7 +45,7 @@ end
 
 local function wipeFolder(path)
 	if not isfolder(path) then return end
-	for _, file in listfiles(path) do
+	for _, file in pairs(listfiles(path)) do
 		if file:find('init') then continue end
 		if file:find('profile') then continue end
 		if isfile(file) then
@@ -57,7 +57,7 @@ local function wipeFolder(path)
 end
 
 
-for _, folder in {'catnextwrite', 'catnextwrite/games', 'catnextwrite/profiles', 'catnextwrite/assets', 'catnextwrite/libraries', 'catnextwrite/guis'} do
+for _, folder in ipairs({'catnextwrite', 'catnextwrite/games', 'catnextwrite/profiles', 'catnextwrite/assets', 'catnextwrite/libraries', 'catnextwrite/guis'}) do
 	if not isfolder(folder) then
 		downloader.Text = 'Downloading '.. folder
 		makefolder(folder)
@@ -92,7 +92,7 @@ if not shared.VapeDeveloper then
 		if req.StatusCode == 200 then
 			local body = cloneref(game:GetService('HttpService')):JSONDecode(req.Body)
 			if body and typeof(body) == 'table' then
-				for _, v in body do
+				for _, v in pairs(body) do
 					if v.type == 'file' then
 						pcall(downloadFile, 'catnextwrite/'.. ({v.path:gsub(' ', '%%20')})[1])
 					end
