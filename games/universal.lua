@@ -8279,7 +8279,7 @@ run(function()
     local Value
     local old
 
-    TimeChanger = vape.Categories.Legit:CreateModule({
+    TimeChanger = vape.Legit:CreateModule({
     	Name = 'Time Changer',
     	Function = function(callback)
     		if callback then
@@ -8306,7 +8306,7 @@ run(function()
 end)
 
 run(function()
-    local AutoReport = vape.Categories.Legit:CreateModule({
+    local AutoReport = vape.Legit:CreateModule({
         Name = "Auto Report",
         HoverText = "Automatically reports players for toxic chat",
         Enabled = false
