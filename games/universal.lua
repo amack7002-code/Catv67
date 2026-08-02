@@ -7230,7 +7230,7 @@ run(function()
 		end
 	end
 	
-	Atmosphere = vape.Legit:CreateModule({
+	Atmosphere = vape.Categories.Render:CreateModule({
 		Name = 'Atmosphere',
 		Function = function(callback)
 			if callback then
@@ -7327,7 +7327,7 @@ run(function()
 	local FadeOut
 	local trail, point, point2
 	
-	Breadcrumbs = vape.Legit:CreateModule({
+	Breadcrumbs = vape.Categories.Utility:CreateModule({
 		Name = 'Breadcrumbs',
 		Function = function(callback)
 			if callback then
@@ -7446,7 +7446,7 @@ run(function()
 		motor.Parent = part
 	end
 	
-	Cape = vape.Legit:CreateModule({
+	Cape = vape.Categories.Utility:CreateModule({
 		Name = 'Cape',
 		Function = function(callback)
 			if callback then
@@ -7514,13 +7514,13 @@ run(function()
 	local Color
 	local hat
 	
-	ChinaHat = vape.Legit:CreateModule({
-		Name = 'China Hat',
-		Function = function(callback)
-			if callback then
-				if vape.ThreadFix then
-					setthreadidentity(8)
-				end
+		ChinaHat = vape.Categories.Utility:CreateModule({
+			Name = 'China Hat',
+			Function = function(callback)
+				if callback then
+					if vape.ThreadFix then
+						setthreadidentity(8)
+					end
 	
 				hat = Instance.new('MeshPart')
 				hat.Size = Vector3.new(3, 0.7, 3)
@@ -7595,7 +7595,7 @@ run(function()
 	local TwentyFourHour
 	local label
 	
-	Clock = vape.Legit:CreateModule({
+	Clock = vape.Categories.Utility:CreateModule({
 		Name = 'Clock',
 		Function = function(callback)
 			if callback then
@@ -7750,7 +7750,7 @@ run(function()
 		end
 	end
 	
-	Disguise = vape.Legit:CreateModule({
+	Disguise = vape.Categories.Utility:CreateModule({
 		Name = 'Disguise',
 		Function = function(callback)
 			if callback then
@@ -7791,7 +7791,7 @@ run(function()
 	local Value
 	local oldfov
 	
-	FOV = vape.Legit:CreateModule({
+	FOV = vape.Categories.Render:CreateModule({
 		Name = 'FOV',
 		Function = function(callback)
 			if callback then
@@ -7821,7 +7821,7 @@ run(function()
 	local FPS
 	local label
 	
-	FPS = vape.Legit:CreateModule({
+	FPS = vape.Categories.Utility:CreateModule({
 		Name = 'FPS',
 		Function = function(callback)
 			if callback then
@@ -7938,7 +7938,7 @@ run(function()
 		end
 	end
 	
-	Keystrokes = vape.Legit:CreateModule({
+	Keystrokes = vape.Categories.Utility:CreateModule({
 		Name = 'Keystrokes',
 		Function = function(callback)
 			if callback then
@@ -8001,7 +8001,7 @@ run(function()
 	local Memory
 	local label
 	
-	Memory = vape.Legit:CreateModule({
+	Memory = vape.Categories.Utility:CreateModule({
 		Name = 'Memory',
 		Function = function(callback)
 			if callback then
@@ -8048,7 +8048,7 @@ run(function()
 	local Ping
 	local label
 	
-	Ping = vape.Legit:CreateModule({
+	Ping = vape.Categories.Utility:CreateModule({
 		Name = 'Ping',
 		Function = function(callback)
 			if callback then
@@ -8141,7 +8141,7 @@ run(function()
 		end
 	end
 	
-	SongBeats = vape.Legit:CreateModule({
+	SongBeats = vape.Categories.Utility:CreateModule({
 		Name = 'Song Beats',
 		Function = function(callback)
 			if callback then
@@ -8229,7 +8229,7 @@ run(function()
 	local Speedmeter
 	local label
 	
-	Speedmeter = vape.Legit:CreateModule({
+	Speedmeter = vape.Categories.Utility:CreateModule({
 		Name = 'Speedmeter',
 		Function = function(callback)
 			if callback then
@@ -8279,7 +8279,7 @@ run(function()
     local Value
     local old
 
-    TimeChanger = vape.Legit:CreateModule({
+    TimeChanger = vape.Categories.Render:CreateModule({
     	Name = 'Time Changer',
     	Function = function(callback)
     		if callback then
@@ -8306,7 +8306,7 @@ run(function()
 end)
 
 run(function()
-    local AutoReport = vape.Legit:CreateModule({
+    local AutoReport = vape.Categories.Utility:CreateModule({
         Name = "Auto Report",
         HoverText = "Automatically reports players for toxic chat",
         Enabled = false
