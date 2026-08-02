@@ -162,7 +162,7 @@ local function finishLoading()
 end
 
 
-downloadFile('catnext/libraries/pathfind.lua')
+-- downloadFile('catnext/libraries/pathfind.lua')
 if not isfile('catnext/profiles/gui.txt') then
 	writefile('catnext/profiles/gui.txt', 'new')
 end
@@ -174,7 +174,7 @@ end
 if not isfile('catnext/profiles/commit.txt') then
 	writefile('catnext/profiles/commit.txt', 'main')
 end
-downloadFile('catnext/libraries/pathfind.lua')
+-- downloadFile('catnext/libraries/pathfind.lua')
 
 getgenv().used_init = true
 vape = loadstring(downloadFile('catnext/guis/'..gui..'.lua'), 'gui')(license)
