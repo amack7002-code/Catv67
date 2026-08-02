@@ -36,6 +36,23 @@ end
 local playersService = cloneref(game:GetService('Players'))
 local httpService = cloneref(game:GetService('HttpService'))
 
+local repoOwner = 'amack7002-code'
+local repoName = 'Catv67'
+local function getCommit()
+	if isfile('catnext/profiles/commit.txt') then
+		local commit = readfile('catnext/profiles/commit.txt')
+		if commit and commit ~= '' then
+			return commit
+		end
+	end
+	writefile('catnext/profiles/commit.txt', 'main')
+	return 'main'
+end
+
+local function getRawUrl(path)
+	return 'https://raw.githubusercontent.com/'..repoOwner..'/'..repoName..'/'..getCommit()..'/'..path
+end
+
 if not isfolder('catnext') then
 	makefolder('catnext')
 end
@@ -89,7 +106,7 @@ local function downloadFile(path, func)
 			commit = readfile('catnext/profiles/commit.txt')
 		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..commit..'/'..select(1, path:gsub('catnext/', '')), true)
+			return game:HttpGet(getRawUrl(select(1, path:gsub('catnext/', ''))), true)
 		end)
 		if not suc then
 			error('Failed to download '..path..': '..tostring(res))
@@ -124,7 +141,7 @@ local function finishLoading()
 				if shared.VapeDeveloper then
 					loadstring(readfile('catnext/main.lua'), 'main')(_scriptconfig)
 				else
-					loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV6/'..readfile('catnext/profiles/commit.txt')..'/init.lua', true), 'init')(_scriptconfig)
+					loadstring(game:HttpGet(getRawUrl('init.lua'), true), 'init')(_scriptconfig)
 				end
 			]]
 			local teleportConfig = httpService:JSONEncode(license)
@@ -217,7 +234,7 @@ if not shared.VapeIndependent then
 	else
 		if not shared.VapeDeveloper then
 			local suc, res = pcall(function()
-				return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnext/profiles/commit.txt')..'/games/'..game.PlaceId..'.lua', true)
+				return game:HttpGet(getRawUrl('games/'..game.PlaceId..'.lua'), true)
 			end)
 			if suc and res ~= '404: Not Found' then
 				loadstring(downloadFile('catnext/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)

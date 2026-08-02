@@ -13,6 +13,23 @@ local delfile = delfile or function(file)
 	writefile(file, '')
 end
 
+local repoOwner = 'amack7002-code'
+local repoName = 'Catv67'
+local function getCommit()
+	if isfile('catnext/profiles/commit.txt') then
+		local commit = readfile('catnext/profiles/commit.txt')
+		if commit and commit ~= '' then
+			return commit
+		end
+	end
+	writefile('catnext/profiles/commit.txt', 'main')
+	return 'main'
+end
+
+local function getRawUrl(path)
+	return 'https://raw.githubusercontent.com/'..repoOwner..'/'..repoName..'/'..getCommit()..'/'..path
+end
+
 local downloader = Instance.new('TextLabel')
 downloader.Size = UDim2.new(1, 0, 0, 40)
 downloader.BackgroundTransparency = 1
@@ -29,7 +46,7 @@ local function downloadFile(path, func)
 			downloader.Text = 'Downloading '.. path
 		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnext/profiles/commit.txt')..'/'..select(1, path:gsub('catnext/', '')), true)
+			return game:HttpGet(getRawUrl(select(1, path:gsub('catnext/', ''))), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
