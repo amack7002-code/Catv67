@@ -59,25 +59,25 @@ local uipallet = {
 }
 
 local getcustomassets = {
-	['catrewrite/assets/old/barlogo.png'] = 'rbxasset://barlogo.png',
-	['catrewrite/assets/old/blatanticon.png'] = 'rbxasset://blatanticon.png',
-	['catrewrite/assets/old/checkbox.png'] = 'rbxasset://checkbox.png',
-	['catrewrite/assets/old/combaticon.png'] = 'rbxasset://combaticon.png',
-	['catrewrite/assets/old/friendsicon.png'] = 'rbxasset://friendsicon.png',
-	['catrewrite/assets/old/guiicon.png'] = 'rbxasset://guiicon.png',
-	['catrewrite/assets/old/info.png'] = 'rbxasset://info.png',
-	['catrewrite/assets/old/pin.png'] = 'rbxasset://pin.png',
-	['catrewrite/assets/old/profilesicon.png'] = 'rbxasset://profilesicon.png',
-	['catrewrite/assets/old/rendericon.png'] = 'rbxasset://rendericon.png',
-	['catrewrite/assets/old/search.png'] = 'rbxasset://search.png',
-	['catrewrite/assets/old/settingsicon.png'] = 'rbxasset://settingsicon.png',
-	['catrewrite/assets/old/targetinfoicon.png'] = 'rbxasset://targetinfoicon.png',
-	['catrewrite/assets/old/textguiicon.png'] = 'rbxasset://textguiicon.png',
-	['catrewrite/assets/old/textv4.png'] = 'rbxasset://textv4.png',
-	['catrewrite/assets/old/textvape.png'] = 'rbxasset://textvape.png',
-	['catrewrite/assets/old/utilityicon.png'] = 'rbxasset://utilityicon.png',
-	['catrewrite/assets/old/vape.png'] = 'rbxassetid://14373395239',
-	['catrewrite/assets/old/worldicon.png'] = 'rbxasset://worldicon.png'
+	['catnext/assets/old/barlogo.png'] = 'rbxasset://barlogo.png',
+	['catnext/assets/old/blatanticon.png'] = 'rbxasset://blatanticon.png',
+	['catnext/assets/old/checkbox.png'] = 'rbxasset://checkbox.png',
+	['catnext/assets/old/combaticon.png'] = 'rbxasset://combaticon.png',
+	['catnext/assets/old/friendsicon.png'] = 'rbxasset://friendsicon.png',
+	['catnext/assets/old/guiicon.png'] = 'rbxasset://guiicon.png',
+	['catnext/assets/old/info.png'] = 'rbxasset://info.png',
+	['catnext/assets/old/pin.png'] = 'rbxasset://pin.png',
+	['catnext/assets/old/profilesicon.png'] = 'rbxasset://profilesicon.png',
+	['catnext/assets/old/rendericon.png'] = 'rbxasset://rendericon.png',
+	['catnext/assets/old/search.png'] = 'rbxasset://search.png',
+	['catnext/assets/old/settingsicon.png'] = 'rbxasset://settingsicon.png',
+	['catnext/assets/old/targetinfoicon.png'] = 'rbxasset://targetinfoicon.png',
+	['catnext/assets/old/textguiicon.png'] = 'rbxasset://textguiicon.png',
+	['catnext/assets/old/textv4.png'] = 'rbxasset://textv4.png',
+	['catnext/assets/old/textvape.png'] = 'rbxasset://textvape.png',
+	['catnext/assets/old/utilityicon.png'] = 'rbxasset://utilityicon.png',
+	['catnext/assets/old/vape.png'] = 'rbxassetid://14373395239',
+	['catnext/assets/old/worldicon.png'] = 'rbxasset://worldicon.png'
 }
 
 local isfile = isfile or function(file)
@@ -220,9 +220,9 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		createDownloader(path)
-			local commitFile = isfile('catnextwrite/profiles/commit.txt') and 'catnextwrite/profiles/commit.txt' or 'catrewrite/profiles/commit.txt'
+			local commitFile = isfile('catnext/profiles/commit.txt') and 'catnext/profiles/commit.txt' or 'catnextwrite/profiles/commit.txt'
 			local suc, res = pcall(function()
-				return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile(commitFile)..'/'..select(1, path:gsub('catrewrite/', '')), true)
+				return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'..readfile(commitFile)..'/'..select(1, path:gsub('catnext/', '')), true)
 			end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -236,10 +236,10 @@ local function downloadFile(path, func)
 end
 
 getcustomasset = not inputService.TouchEnabled and assetfunction and function(path)
-	path = path:gsub('^catrewrite/', 'catnextwrite/')
+	path = path:gsub('^catrewrite/', 'catnext/')
 	return downloadFile(path, assetfunction)
 end or function(path)
-	path = path:gsub('^catrewrite/', 'catnextwrite/')
+	path = path:gsub('^catrewrite/', 'catnext/')
 	return getcustomassets[path] or ''
 end
 
@@ -313,7 +313,7 @@ local function removeTags(str)
 end
 
 do
-	local res = isfile('catrewrite/profiles/color.txt') and loadJson('catrewrite/profiles/color.txt')
+	local res = isfile('catsix/profiles/color.txt') and loadJson('catsix/profiles/color.txt')
 	if res then
 		uipallet.Main = res.Main and Color3.fromRGB(unpack(res.Main)) or uipallet.Main
 		uipallet.Text = res.Text and Color3.fromRGB(unpack(res.Text)) or uipallet.Text
@@ -580,7 +580,7 @@ components = {
 		expand.Size = UDim2.fromOffset(9, 5)
 		expand.Position = UDim2.fromOffset(4, 4)
 		expand.BackgroundTransparency = 1
-		expand.Image = getcustomasset('catrewrite/assets/new/expandicon.png')
+		expand.Image = getcustomasset('catsix/assets/new/expandicon.png')
 		expand.ImageColor3 = color.Dark(uipallet.Text, 0.43)
 		expand.Parent = expandbutton
 		local rainbow = Instance.new('TextButton')
@@ -1347,7 +1347,7 @@ components = {
 				local objectdotin = Instance.new('ImageLabel')
 				objectdotin.Size = UDim2.fromScale(1, 1)
 				objectdotin.BackgroundTransparency = 1
-				objectdotin.Image = getcustomasset('catrewrite/assets/old/checkbox.png')
+				objectdotin.Image = getcustomasset('catsix/assets/old/checkbox.png')
 				objectdotin.ImageColor3 = uipallet.Text
 				objectdotin.Parent = objectdot
 				local objecttitle = Instance.new('TextLabel')
@@ -1596,7 +1596,7 @@ components = {
 		arrow.Size = UDim2.fromOffset(12, 6)
 		arrow.Position = UDim2.new(1, -56, 0, 10)
 		arrow.BackgroundTransparency = 1
-		arrow.Image = getcustomasset('catrewrite/assets/new/rangearrow.png')
+		arrow.Image = getcustomasset('catsix/assets/new/rangearrow.png')
 		arrow.ImageColor3 = color.Light(uipallet.Main, 0.14)
 		arrow.Parent = slider
 		optionsettings.Function = optionsettings.Function or function() end
@@ -1787,7 +1787,7 @@ function mainapi:CreateBar()
 	logo.Size = UDim2.fromOffset(92, 25)
 	logo.Position = UDim2.fromOffset(11, 8)
 	logo.BackgroundTransparency = 1
-	logo.Image = getcustomasset('catrewrite/assets/old/barlogo.png')
+	logo.Image = getcustomasset('catsix/assets/old/barlogo.png')
 	logo.ImageColor3 = uipallet.Text
 	logo.Parent = bar
 	local settingsbutton = Instance.new('TextButton')
@@ -1803,7 +1803,7 @@ function mainapi:CreateBar()
 	settingsicon.Size = UDim2.fromOffset(26, 26)
 	settingsicon.Position = UDim2.fromOffset(4, 4)
 	settingsicon.BackgroundTransparency = 1
-	settingsicon.Image = getcustomasset('catrewrite/assets/old/settingsicon.png')
+	settingsicon.Image = getcustomasset('catsix/assets/old/settingsicon.png')
 	settingsicon.ImageColor3 = uipallet.Text
 	settingsicon.Parent = settingsbutton
 	local children = Instance.new('Frame')
@@ -1820,7 +1820,7 @@ function mainapi:CreateBar()
 	local searchbutton = settingsbutton:Clone()
 	searchbutton.Position = UDim2.fromOffset(144, 4)
 	searchbutton.Parent = bar
-	searchbutton.ImageLabel.Image = getcustomasset('catrewrite/assets/old/search.png')
+	searchbutton.ImageLabel.Image = getcustomasset('catsix/assets/old/search.png')
 
 	function categoryapi:CreateBind()
 		local optionapi = {}
@@ -2560,7 +2560,7 @@ function mainapi:CreateOverlay(categorysettings)
 	pin.Position = UDim2.new(1, -23, 0, 11)
 	pin.BackgroundTransparency = 1
 	pin.AutoButtonColor = false
-	pin.Image = getcustomasset('catrewrite/assets/old/pin.png')
+	pin.Image = getcustomasset('catsix/assets/old/pin.png')
 	pin.ImageColor3 = color.Dark(uipallet.Text, 0.43)
 	pin.Parent = window
 	local customchildren = Instance.new('Frame')
@@ -2752,8 +2752,8 @@ function mainapi:CreateCategoryList(categorysettings)
 				if ind then
 					if val ~= 'default' then
 						table.remove(mainapi.Profiles, ind)
-						if isfile('catrewrite/profiles/'..val..mainapi.Place..'.txt') and delfile then
-							delfile('catrewrite/profiles/'..val..mainapi.Place..'.txt')
+						if isfile('catsix/profiles/'..val..mainapi.Place..'.txt') and delfile then
+							delfile('catsix/profiles/'..val..mainapi.Place..'.txt')
 						end
 					end
 				else
@@ -2879,7 +2879,7 @@ function mainapi:CreateCategoryList(categorysettings)
 				local objectdotin = Instance.new('ImageLabel')
 				objectdotin.Size = UDim2.fromScale(1, 1)
 				objectdotin.BackgroundTransparency = 1
-				objectdotin.Image = getcustomasset('catrewrite/assets/old/checkbox.png')
+				objectdotin.Image = getcustomasset('catsix/assets/old/checkbox.png')
 				objectdotin.ImageColor3 = uipallet.Text
 				objectdotin.Parent = objectdot
 				local objecttitle = Instance.new('TextLabel')
@@ -3018,7 +3018,7 @@ function mainapi:CreateNotification(title, text, duration, type)
 		iconshadow.Position = UDim2.fromOffset(1, 3)
 		iconshadow.ZIndex = 5
 		iconshadow.BackgroundTransparency = 1
-		iconshadow.Image = getcustomasset('catrewrite/assets/old/info.png')
+		iconshadow.Image = getcustomasset('catsix/assets/old/info.png')
 		iconshadow.ImageColor3 = Color3.new()
 		iconshadow.ImageTransparency = 0.5
 		iconshadow.Parent = notification
@@ -3093,8 +3093,8 @@ function mainapi:Load(skipgui, profile)
 	local guidata = {}
 	local savecheck = true
 
-	if isfile('catrewrite/profiles/'..game.GameId..'.gui.txt') then
-		guidata = loadJson('catrewrite/profiles/'..game.GameId..'.gui.txt')
+	if isfile('catsix/profiles/'..game.GameId..'.gui.txt') then
+		guidata = loadJson('catsix/profiles/'..game.GameId..'.gui.txt')
 		if not guidata then
 			guidata = {Categories = {}}
 			self:CreateNotification('Vape', 'Failed to load GUI settings.', 10, 'alert')
@@ -3137,8 +3137,8 @@ function mainapi:Load(skipgui, profile)
 	}}
 	self.Categories.Profiles:ChangeValue()
 
-	if isfile('catrewrite/profiles/'..self.Profile..self.Place..'.txt') then
-		local savedata = loadJson('catrewrite/profiles/'..self.Profile..self.Place..'.txt')
+	if isfile('catsix/profiles/'..self.Profile..self.Place..'.txt') then
+		local savedata = loadJson('catsix/profiles/'..self.Profile..self.Place..'.txt')
 		if not savedata then
 			savedata = {
 				Categories = {},
@@ -3224,7 +3224,7 @@ function mainapi:Load(skipgui, profile)
 		image.Size = UDim2.fromOffset(26, 26)
 		image.Position = UDim2.fromOffset(3, 3)
 		image.BackgroundTransparency = 1
-		image.Image = getcustomasset('catrewrite/assets/old/vape.png')
+		image.Image = getcustomasset('catsix/assets/old/vape.png')
 		image.Parent = button
 		self.VapeButton = button
 		button.MouseButton1Click:Connect(function()
@@ -3317,8 +3317,8 @@ function mainapi:Save(newprofile)
 		}
 	end
 
-	writefile('catrewrite/profiles/'..game.GameId..'.gui.txt', httpService:JSONEncode(guidata))
-	writefile('catrewrite/profiles/'..self.Profile..self.Place..'.txt', httpService:JSONEncode(savedata))
+	writefile('catsix/profiles/'..game.GameId..'.gui.txt', httpService:JSONEncode(guidata))
+	writefile('catsix/profiles/'..self.Profile..self.Place..'.txt', httpService:JSONEncode(savedata))
 end
 
 function mainapi:SaveOptions(object, savedoptions)
@@ -3363,6 +3363,7 @@ function mainapi:Uninject()
 	end
 	mainapi.gui:ClearAllChildren()
 	mainapi.gui:Destroy()
+	table.clear(mainapi.Connections)
 	table.clear(mainapi.Libraries)
 	loopClean(mainapi)
 	shared.vape = nil
@@ -3467,45 +3468,45 @@ end))
 
 mainapi:CreateCategory({
 	Name = 'GUI',
-	Icon = getcustomasset('catrewrite/assets/old/guiicon.png')
+	Icon = getcustomasset('catsix/assets/old/guiicon.png')
 })
 local combat = mainapi:CreateCategory({
 	Name = 'Combat',
-	Icon = getcustomasset('catrewrite/assets/old/combaticon.png')
+	Icon = getcustomasset('catsix/assets/old/combaticon.png')
 })
 mainapi:CreateCategory({
 	Name = 'Blatant',
-	Icon = getcustomasset('catrewrite/assets/old/blatanticon.png'),
+	Icon = getcustomasset('catsix/assets/old/blatanticon.png'),
 	WindowSize = 164
 })
 mainapi:CreateCategory({
 	Name = 'Render',
-	Icon = getcustomasset('catrewrite/assets/old/rendericon.png'),
+	Icon = getcustomasset('catsix/assets/old/rendericon.png'),
 	WindowSize = 196
 })
 mainapi:CreateCategory({
 	Name = 'Utility',
-	Icon = getcustomasset('catrewrite/assets/old/utilityicon.png'),
+	Icon = getcustomasset('catsix/assets/old/utilityicon.png'),
 	WindowSize = 164
 })
 mainapi:CreateCategory({
 	Name = 'World',
-	Icon = getcustomasset('catrewrite/assets/old/worldicon.png')
+	Icon = getcustomasset('catsix/assets/old/worldicon.png')
 })
 mainapi:CreateCategory({
 	Name = 'Inventory',
-	Icon = getcustomasset('catrewrite/assets/old/worldicon.png')
+	Icon = getcustomasset('catsix/assets/old/worldicon.png')
 })
 mainapi:CreateCategory({
 	Name = 'Minigames',
-	Icon = getcustomasset('catrewrite/assets/old/worldicon.png')
+	Icon = getcustomasset('catsix/assets/old/worldicon.png')
 })
 mainapi.Legit = mainapi:CreateLegit({
 	Name = 'Legit'
 })
 local settingspane = mainapi:CreateCategory({
 	Name = 'Settings',
-	Icon = getcustomasset('catrewrite/assets/old/settingsicon.png'),
+	Icon = getcustomasset('catsix/assets/old/settingsicon.png'),
 	WindowSize = 166
 })
 
@@ -3521,7 +3522,7 @@ local friendscolor = {
 }
 local friendssettings = {
 	Name = 'Friends',
-	Icon = getcustomasset('catrewrite/assets/old/friendsicon.png'),
+	Icon = getcustomasset('catsix/assets/old/friendsicon.png'),
 	Placeholder = 'Roblox username',
 	WindowSize = 250,
 	Function = function()
@@ -3566,7 +3567,7 @@ mainapi:Clean(friends.ColorUpdate)
 ]]
 mainapi:CreateCategoryList({
 	Name = 'Profiles',
-	Icon = getcustomasset('catrewrite/assets/old/profilesicon.png'),
+	Icon = getcustomasset('catsix/assets/old/profilesicon.png'),
 	Placeholder = 'Type name',
 	WindowSize = 250,
 	Profiles = true
@@ -3578,7 +3579,7 @@ mainapi:CreateCategoryList({
 local targets
 targets = mainapi:CreateCategoryList({
 	Name = 'Targets',
-	Icon = getcustomasset('catrewrite/assets/old/friendsicon.png'),
+	Icon = getcustomasset('catsix/assets/old/friendsicon.png'),
 	Placeholder = 'Roblox username',
 	WindowSize = 250,
 	Function = function()
@@ -3727,12 +3728,12 @@ topbar:CreateDropdown({
 	List = inputService.TouchEnabled and {'new', 'old'} or {'new', 'old', 'rise'},
 	Function = function(val, mouse)
 		if mouse then
-			writefile('catrewrite/profiles/gui.txt', val)
+			writefile('catnext/profiles/gui.txt', val)
 			shared.vapereload = true
 			if shared.VapeDeveloper then
-				loadstring(readfile('catrewrite/loader.lua'), 'loader')()
+				loadstring(readfile('catnext/init.lua'), 'init')()
 			else
-				loadstring(game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/loader.lua', true))()
+				loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'..readfile('catnext/profiles/commit.txt')..'/init.lua', true))()
 			end
 		end
 	end,
@@ -3763,14 +3764,14 @@ topbar:CreateButton({
 	Name = 'Reset current profile',
 	Function = function()
 	mainapi.Save = function() end
-		if isfile('catrewrite/profiles/'..mainapi.Profile..mainapi.Place..'.txt') and delfile then
-			delfile('catrewrite/profiles/'..mainapi.Profile..mainapi.Place..'.txt')
+		if isfile('catnext/profiles/'..mainapi.Profile..mainapi.Place..'.txt') and delfile then
+			delfile('catnext/profiles/'..mainapi.Profile..mainapi.Place..'.txt')
 		end
 		shared.vapereload = true
 		if shared.VapeDeveloper then
-			loadstring(readfile('catrewrite/loader.lua'), 'loader')()
+			loadstring(readfile('catnext/init.lua'), 'init')()
 		else
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/loader.lua', true))()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'..readfile('catnext/profiles/commit.txt')..'/init.lua', true))()
 		end
 	end,
 	Tooltip = 'This will set your profile to the default settings of Vape'
@@ -3832,9 +3833,9 @@ topbar:CreateButton({
 	Function = function()
 		shared.vapereload = true
 		if shared.VapeDeveloper then
-			loadstring(readfile('catrewrite/loader.lua'), 'loader')()
+			loadstring(readfile('catnext/init.lua'), 'init')()
 		else
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/loader.lua', true))()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'..readfile('catnext/profiles/commit.txt')..'/init.lua', true))()
 		end
 	end,
 	Tooltip = 'Reloads vape for debugging purposes'
@@ -4007,7 +4008,7 @@ mainapi.Libraries.targetinfo = targetinfo
 
 local textgui = mainapi:CreateOverlay({
 	Name = 'Text GUI',
-	Icon = getcustomasset('catrewrite/assets/old/textguiicon.png'),
+	Icon = getcustomasset('catsix/assets/old/textguiicon.png'),
 	WindowSize = 178,
 	Function = function()
 		mainapi:UpdateTextGUI()
@@ -4095,7 +4096,7 @@ VapeLogo.BackgroundTransparency = 1
 VapeLogo.BorderSizePixel = 0
 VapeLogo.Visible = true
 VapeLogo.BackgroundColor3 = Color3.new()
-VapeLogo.Image = getcustomasset('catrewrite/assets/old/textvape.png')
+VapeLogo.Image = getcustomasset('catsix/assets/old/textvape.png')
 VapeLogo.Parent = textgui.Children
 
 local lastside = textgui.Children.AbsolutePosition.X > (gui.AbsoluteSize.X / 2)
@@ -4117,7 +4118,7 @@ VapeLogoV4.Position = UDim2.new(1, 1, 0, -2)
 VapeLogoV4.BackgroundColor3 = Color3.new()
 VapeLogoV4.BackgroundTransparency = 1
 VapeLogoV4.BorderSizePixel = 0
-VapeLogoV4.Image = getcustomasset('catrewrite/assets/old/textv4.png')
+VapeLogoV4.Image = getcustomasset('catsix/assets/old/textv4.png')
 VapeLogoV4.Parent = VapeLogo
 local VapeLogoShadow = VapeLogo:Clone()
 VapeLogoShadow.Position = UDim2.fromOffset(1, 1)

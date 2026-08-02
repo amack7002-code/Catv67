@@ -29,7 +29,7 @@ local function downloadFile(path, func)
 			downloader.Text = 'Downloading '.. path
 		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnextwrite/profiles/commit.txt')..'/'..select(1, path:gsub('catnextwrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('catnext/profiles/commit.txt')..'/'..select(1, path:gsub('catnext/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -57,7 +57,7 @@ local function wipeFolder(path)
 end
 
 
-for _, folder in ipairs({'catnextwrite', 'catnextwrite/games', 'catnextwrite/profiles', 'catnextwrite/assets', 'catnextwrite/libraries', 'catnextwrite/guis'}) do
+for _, folder in ipairs({'catnext', 'catnext/games', 'catnext/profiles', 'catnext/assets', 'catnext/libraries', 'catnext/guis'}) do
 	if not isfolder(folder) then
 		downloader.Text = 'Downloading '.. folder
 		makefolder(folder)
@@ -74,17 +74,17 @@ if not shared.VapeDeveloper then
 		commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 		commit = commit and #commit == 40 and commit or 'main'
 	end
-	if commit == 'main' or (isfile('catnextwrite/profiles/commit.txt') and readfile('catnextwrite/profiles/commit.txt') or '') ~= commit then
-		if commit ~= 'main' and isfile('catnextwrite/profiles/commit.txt') then
-			shared.updated = readfile('catnextwrite/profiles/commit.txt')
+	if commit == 'main' or (isfile('catnext/profiles/commit.txt') and readfile('catnext/profiles/commit.txt') or '') ~= commit then
+		if commit ~= 'main' and isfile('catnext/profiles/commit.txt') then
+			shared.updated = readfile('catnext/profiles/commit.txt')
 		end
-		wipeFolder('catnextwrite')
-		wipeFolder('catnextwrite/games')
-		wipeFolder('catnextwrite/guis')
-		wipeFolder('catnextwrite/libraries')
+		wipeFolder('catnext')
+		wipeFolder('catnext/games')
+		wipeFolder('catnext/guis')
+		wipeFolder('catnext/libraries')
 	end
-	writefile('catnextwrite/profiles/commit.txt', commit)
-	if #listfiles('catnextwrite/profiles') < 4 then
+	writefile('catnext/profiles/commit.txt', commit)
+	if #listfiles('catnext/profiles') < 4 then
 			local req = request({
 				Url = 'https://api.github.com/repos/amack7002-code/Catv67/contents/profiles',
 				Method = 'GET'
@@ -94,7 +94,7 @@ if not shared.VapeDeveloper then
 			if body and typeof(body) == 'table' then
 				for _, v in pairs(body) do
 					if v.type == 'file' then
-						pcall(downloadFile, 'catnextwrite/'.. ({v.path:gsub(' ', '%%20')})[1])
+						pcall(downloadFile, 'catnext/'.. ({v.path:gsub(' ', '%%20')})[1])
 					end
 				end
 			end
@@ -103,4 +103,4 @@ if not shared.VapeDeveloper then
 end
 
 downloader.Text = ''
-return loadstring(downloadFile('catnextwrite/main.lua'), 'main')(license)
+return loadstring(downloadFile('catnext/main.lua'), 'main')(license)

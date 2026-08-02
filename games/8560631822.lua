@@ -1,32 +1,40 @@
 local vape = shared.vape
 local loadstring = function(...)
 	local res, err = loadstring(...)
-	if err and vape then vape:CreateNotification('Vape', 'Failed to load : ' .. err, 30, 'alert') end
+	if err and vape then
+		vape:CreateNotification('Vape', 'Failed to load : '..err, 30, 'alert')
+	end
 	return res
 end
 local isfile = isfile or function(file)
-	local suc, res = pcall(function() return readfile(file) end)
+	local suc, res = pcall(function()
+		return readfile(file)
+	end)
 	return suc and res ~= nil and res ~= ''
 end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnextwrite/profiles/commit.txt').. '/'.. select(1, path:gsub('catnextwrite/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnext/profiles/commit.txt').. '/'.. select(1, path:gsub('catnext/', '')), true)
 		end)
-		if not suc or res == '404: Not Found' then error(res) end
-		if path:find('.lua') then res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\\n'.. res end
+		if not suc or res == '404: Not Found' then
+			error(res)
+		end
+		if path:find('.lua') then
+			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
+		end
 		writefile(path, res)
 	end
 	return (func or readfile)(path)
 end
 
 vape.Place = 6872274481
-if isfile('catrewrite/games/' .. vape.Place .. '.lua') then
-	loadstring(readfile('catrewrite/games/' .. vape.Place .. '.lua'), tostring("game micro"))()
+if isfile('catsix/games/'..vape.Place..'.lua') then
+	loadstring(readfile('catsix/games/'..vape.Place..'.lua'), 'bedwars')()
 else
 	if not shared.VapeDeveloper then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnextwrite/profiles/commit.txt').. '/games/'.. vape.Place.. '.lua', true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV67/'.. readfile('catnext/profiles/commit.txt').. '/games/'.. vape.Place.. '.lua', true)
 		end)
 		if suc and res ~= '404: Not Found' then loadstring(downloadFile('catnextwrite/games/' .. vape.Place .. '.lua'), tostring("game micro"))() end
 	end
