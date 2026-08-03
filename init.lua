@@ -115,6 +115,7 @@ if not shared.VapeDeveloper then
 					end
 				end
 			end
+			return installed
 		end
 	end
 end
