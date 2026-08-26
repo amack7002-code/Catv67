@@ -1,16 +1,15 @@
 --!nocheck
-local license = ... or {}
-license.Key = script_key or license.Key
 
-local cloneref = cloneref or function(ref) return ref end
-local isfile = isfile or function(file)
-	local suc, res = pcall(function()
-		return readfile(file)
-	end)
-	return suc and res ~= nil and res ~= ''
-end
-local delfile = delfile or function(file)
-	writefile(file, '')
+local Licence = { }
+Licence.Key = Licence.Key or script_key or [[KEY-HERE]]
+
+local cloneref:(<T>(T) -> T) | (<a>(a) -> a) = cloneref or function(Reference: any) return Reference end
+local isfile: (string) -> boolean = isfile or function(File: string): boolean
+    local Success: boolean, Result = pcall(function()
+        return readfile(File)
+    end)
+
+    return Success and Result
 end
 
 local repoOwner = 'amack7002-code'
@@ -73,6 +72,10 @@ local function wipeFolder(path)
 	end
 end
 
+local function DownloadAsset(FileData: ContentData): ()
+    if FileData.encoding == "base64" then
+        FileData.content = buffer.tostring(EncodingService:Base64Decode(buffer.fromstring(FileData.content)))
+    end
 
 for _, folder in ipairs({'catnext', 'catnext/games', 'catnext/profiles', 'catnext/assets', 'catnext/libraries', 'catnext/guis'}) do
 	if not isfolder(folder) then
