@@ -109,20 +109,26 @@ local function downloadFile(path, func)
 			return game:HttpGet(getRawUrl(select(1, path:gsub('catnext/', ''))), true)
 		end)
 		if not suc then
-			error('Failed to download '..path..': '..tostring(res))
+			print('Failed to download '..path..': '..tostring(res))
+			return nil
 		end
 		if res == '404: Not Found' or res == nil or res == '' then
-			error('Failed to download '..path..': '..tostring(res))
+			print('Failed to download '..path..': '..tostring(res))
+			return nil
 		end
 		if path:find('.lua') then
 			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
 		end
 		writefile(path, res)
 	end
-	return (func or readfile)(path)
+	local success, result = pcall(function()
+		return (func or readfile)(path)
+	end)
+	return success and result or nil
 end
 
 local function finishLoading()
+	if not vape then return end
 	vape.Init = nil
 	vape:Load()
 
@@ -162,7 +168,7 @@ local function finishLoading()
 			task.wait(0.1)
 		end
 		if not shared.vapereload then
-			vape:CreateNotification('Finished Loading', (getgenv().catname and ('Authenticated as '..tostring(getgenv().catname)..' with '..tostring(getgenv().catrole)..', ') or '').. (vape.VapeButton and 'Press the button in the top right' or ('Press '..table.concat(vape.Keybind, ' + '):upper()..' to open GUI')), 5)
+			vape:CreateNotification('Finished Loading', (getgenv().catname and ('Authenticated as '..tostring(getgenv().catname)..' with '..tostring(getgenv().catrole)..', ') or '').. (vape.VapeButton and 'VapeButton works!' or 'no vape button'))
 			task.delay(0.05 + cloneref(game:GetService('RunService')).PostSimulation:Wait(), function()
 				if shared.updated then
 					vape:CreateNotification('Cat', "Script has updated from "..tostring(shared.updated).." to "..tostring(readfile('catnext/profiles/commit.txt')), 10, 'info')
@@ -172,12 +178,10 @@ local function finishLoading()
 	end
 end
 
-
--- downloadFile('catnext/libraries/pathfind.lua')
 if not isfile('catnext/profiles/gui.txt') then
 	writefile('catnext/profiles/gui.txt', 'new')
 end
-local gui = 'new'--readfile('catnext/profiles/gui.txt')
+local gui = 'new'
 
 if not isfolder('catnext/assets/'..gui) then
 	makefolder('catnext/assets/'..gui)
@@ -185,20 +189,22 @@ end
 if not isfile('catnext/profiles/commit.txt') then
 	writefile('catnext/profiles/commit.txt', 'main')
 end
--- downloadFile('catnext/libraries/pathfind.lua')
 
 getgenv().used_init = true
-vape = loadstring(downloadFile('catnext/guis/'..gui..'.lua'), 'gui')(license)
-_G.vape = vape
-if not isfile('catnext/profiles/gui.txt') then
-	writefile('catnext/profiles/gui.txt', 'new')
+local guiContent = downloadFile('catnext/guis/'..gui..'.lua')
+if guiContent then
+	vape = loadstring(guiContent, 'gui')(license)
+	_G.vape = vape
+else
+	print('WARNING: Could not load GUI file, creating stub')
+	vape = {
+		CreateNotification = function() end,
+		Load = function() end,
+		Save = function() end,
+		Clean = function(_, ...) return ... end,
+		Init = nil
+	}
 end
-local gui = 'new'--readfile('catnext/profiles/gui.txt')
-
-if not isfolder('catnext/assets/'..gui) then
-	makefolder('catnext/assets/'..gui)
-end
-vape = loadstring(downloadFile('catnext/guis/'..gui..'.lua'), 'gui')(license)
 
 shared.vape = vape
 _G.vape = vape
@@ -222,7 +228,13 @@ if shared.maincat then
 end
 
 if not shared.VapeIndependent then
-	loadstring(downloadFile('catnext/games/universal.lua'), 'universal')(license)
+	local universalContent = downloadFile('catnext/games/universal.lua')
+	if universalContent then
+		loadstring(universalContent, 'universal')(license)
+	else
+		print('WARNING: Could not load universal.lua')
+	end
+	
 	if isfile('catnext/games/'..game.PlaceId..'.lua') then
 		loadstring(readfile('catnext/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
 	else
@@ -231,14 +243,25 @@ if not shared.VapeIndependent then
 				return game:HttpGet(getRawUrl('games/'..game.PlaceId..'.lua'), true)
 			end)
 			if suc and res ~= '404: Not Found' then
-				loadstring(downloadFile('catnext/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
+				local gameContent = downloadFile('catnext/games/'..game.PlaceId..'.lua')
+				if gameContent then
+					loadstring(gameContent, tostring(game.PlaceId))(license)
+				end
 			end
 		end
 	end
+	
 	if vape.ThreadFix then
 		setthreadidentity(8)
 	end
-	loadstring(downloadFile('catnext/libraries/premium.lua'), 'premium')(license)
+	
+	local premiumContent = downloadFile('catnext/libraries/premium.lua')
+	if premiumContent then
+		loadstring(premiumContent, 'premium')(license)
+	else
+		print('WARNING: Could not load premium.lua')
+	end
+	
 	finishLoading()
 else
 	vape.Init = finishLoading
