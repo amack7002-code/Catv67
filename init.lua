@@ -41,7 +41,7 @@ downloader.Parent = Instance.new('ScreenGui', gethui and gethui() or cloneref(ga
 
 local function downloadFile(path, func)
 	if not isfile(path) then
-		if not license.Closet then
+		if not Licence.Closet then  -- Fixed: Licence with capital L
 			downloader.Text = 'Downloading '.. path
 		end
 		local suc, res = pcall(function()
@@ -76,6 +76,7 @@ local function DownloadAsset(FileData: ContentData): ()
     if FileData.encoding == "base64" then
         FileData.content = buffer.tostring(EncodingService:Base64Decode(buffer.fromstring(FileData.content)))
     end
+end
 
 for _, folder in ipairs({'catnext', 'catnext/games', 'catnext/profiles', 'catnext/assets', 'catnext/libraries', 'catnext/guis'}) do
 	if not isfolder(folder) then
@@ -85,7 +86,7 @@ for _, folder in ipairs({'catnext', 'catnext/games', 'catnext/profiles', 'catnex
 end
 
 if not shared.VapeDeveloper then
-	local commit = license.Commit or nil
+	local commit = Licence.Commit or nil  -- Fixed: Licence with capital L
 	if not commit then
 			local _, subbed = pcall(function()
 				return game:HttpGet('https://github.com/amack7002-code/Catv67')
@@ -124,4 +125,12 @@ if not shared.VapeDeveloper then
 end
 
 downloader.Text = ''
-return loadstring(downloadFile('catnext/main.lua'), 'main')(license)
+
+-- Fixed: Use pcall to safely load and execute main.lua
+local mainContent = downloadFile('catnext/main.lua')
+if mainContent then
+	local mainFunc = loadstring(mainContent, 'main')
+	if mainFunc then
+		mainFunc(Licence) 
+	end
+end
