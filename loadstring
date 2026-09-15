@@ -1,1 +1,9 @@
-script_key = "KEY-HERE"; loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua'))('init.lua')({})
+script_key = "KEY-HERE"
+
+local content = game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua')
+local func = loadstring(content, 'init.lua')
+if func then
+	func({})
+else
+	error("Failed to load init.lua")
+end
