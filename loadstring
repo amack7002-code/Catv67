@@ -1,9 +1,16 @@
 script_key = "KEY-HERE"
 
-local content = game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua')
-local func = loadstring(content, 'init.lua')
-if func then
-	func({})
-else
-	error("Failed to load init.lua")
+local success, content = pcall(function()
+    return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/init.lua')
+end)
+
+if not success or not content or content == '' then
+    error("Failed to download init.lua: " .. tostring(content))
 end
+
+local func = loadstring(content, 'init.lua')
+if not func then
+    error("Failed to load init.lua - invalid Lua code")
+end
+
+func({key = script_key})
