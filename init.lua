@@ -128,14 +128,17 @@ end
 
 downloader.Text = ''
 
--- Fixed: Use pcall to safely load and execute main.lua
-local mainContent = downloadFile('catnext/main.lua')
+-- Load main.lua from root
+local mainContent = game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/main/main.lua')
 if mainContent then
 	local mainFunc = loadstring(mainContent, 'main')
 	if mainFunc then
 		mainFunc(Licence) 
+	else
+		downloader.Text = 'Failed to load main.lua'
+		print('Error: Failed to loadstring main.lua')
 	end
 else
-	downloader.Text = 'catnext/main.lua not found'
-	print('Warning: catnext/main.lua could not be loaded')
+	downloader.Text = 'Failed to download main.lua'
+	print('Error: Failed to download main.lua')
 end
