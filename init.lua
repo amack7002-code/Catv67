@@ -48,7 +48,9 @@ local function downloadFile(path, func)
 			return game:HttpGet(getRawUrl(select(1, path:gsub('catnext/', ''))), true)
 		end)
 		if not suc or res == '404: Not Found' then
-			error(res)
+			downloader.Text = 'Error downloading '..path..': '..tostring(res)
+			print('Download error: '..tostring(res))
+			return nil
 		end
 		if path:find('.lua') then
 			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
@@ -133,4 +135,7 @@ if mainContent then
 	if mainFunc then
 		mainFunc(Licence) 
 	end
+else
+	downloader.Text = 'catnext/main.lua not found'
+	print('Warning: catnext/main.lua could not be loaded')
 end
