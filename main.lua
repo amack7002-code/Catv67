@@ -3,15 +3,15 @@ repeat task.wait() until game:IsLoaded()
 if shared.vape then shared.vape:Uninject() end
 license.Key = license.Key or '_key'
 
-if isfolder('catrewrite') and isfolder('catrewrite/profiles') then
-	for _, v in listfiles('catrewrite/profiles') do
+if isfolder('Catv67') and isfolder('Catv67/profiles') then
+	for _, v in listfiles('Catv67/profiles') do
 		if not v:find('commit.txt') then
 			local old = v
-			v = v:gsub('catrewrite', 'catsix')
+			v = v:gsub('Catv67', 'Catv67')
 			writefile(v, readfile(old))
 		end
 	end
-	delfolder('catrewrite/profiles')
+	delfolder('Catv67/profiles')
 end
 
 local vape
@@ -38,7 +38,7 @@ local httpService = cloneref(game:GetService("HttpService"))
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catsix/profiles/commit.txt')..'/'..select(1, path:gsub('catsix/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('Catv67/profiles/commit.txt')..'/'..select(1, path:gsub('Catv67/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -62,9 +62,9 @@ local function finishLoading()
 			local teleportScript = [[
 				shared.vapereload = true
 				if shared.VapeDeveloper then
-					loadstring(readfile('catsix/main.lua'), 'main')(_scriptconfig)
+					loadstring(readfile('Catv67/main.lua'), 'main')(_scriptconfig)
 				else
-					loadstring(game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catsix/profiles/commit.txt')..'/init.lua', true), 'init')(_scriptconfig)
+					loadstring(game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('Catv67/profiles/commit.txt')..'/init.lua', true), 'init')(_scriptconfig)
 				end
 			]]
 			local teleportConfig = httpService:JSONEncode(license)
@@ -94,22 +94,22 @@ local function finishLoading()
 			vape:CreateNotification('Finished Loading', (getgenv().catname and `Authenticated as {getgenv().catname} with {getgenv().catrole}, ` or '').. (vape.VapeButton and 'Press the button in the top right' or 'Press '..table.concat(vape.Keybind, ' + '):upper())..' to open GUI', 5)
 			task.delay(0.05 + cloneref(game:GetService('RunService')).PostSimulation:Wait(), function()
 				if shared.updated then
-					vape:CreateNotification('Cat', `Script has updated from {shared.updated} to {readfile('catsix/profiles/commit.txt')}`, 10, 'info')
+					vape:CreateNotification('Cat', `Script has updated from {shared.updated} to {readfile('Catv67/profiles/commit.txt')}`, 10, 'info')
 				end
 			end)
 		end	
 	end
 end
 
-if not isfile('catsix/profiles/gui.txt') then
-	writefile('catsix/profiles/gui.txt', 'new')
+if not isfile('Catv67/profiles/gui.txt') then
+	writefile('Catv67/profiles/gui.txt', 'new')
 end
-local gui = 'new'--readfile('catsix/profiles/gui.txt')
+local gui = 'new'--readfile('Catv67/profiles/gui.txt')
 
-if not isfolder('catsix/assets/'..gui) then
-	makefolder('catsix/assets/'..gui)
+if not isfolder('Catv67/assets/'..gui) then
+	makefolder('Catv67/assets/'..gui)
 end
-vape = loadstring(downloadFile('catsix/guis/'..gui..'.lua'), 'gui')(license)
+vape = loadstring(downloadFile('Catv67/guis/'..gui..'.lua'), 'gui')(license)
 shared.vape = vape
 shared.vapesmooth = true
 _G.vape = vape
@@ -134,20 +134,20 @@ if shared.maincat then
 end
 
 if not shared.VapeIndependent then
-	loadstring(downloadFile('catsix/games/universal.lua'), 'universal')(license)
-	if isfile('catsix/games/'..game.PlaceId..'.lua') then
-		loadstring(readfile('catsix/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
+	loadstring(downloadFile('Catv67/games/universal.lua'), 'universal')(license)
+	if isfile('Catv67/games/'..game.PlaceId..'.lua') then
+		loadstring(readfile('Catv67/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
 	else
 		if not shared.VapeDeveloper then
 			local suc, res = pcall(function()
-				return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catsix/profiles/commit.txt')..'/games/'..game.PlaceId..'.lua', true)
+				return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/CatV6/'..readfile('Catv67/profiles/commit.txt')..'/games/'..game.PlaceId..'.lua', true)
 			end)
 			if suc and res ~= '404: Not Found' then
-				loadstring(downloadFile('catsix/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
+				loadstring(downloadFile('Catv67/games/'..game.PlaceId..'.lua'), tostring(game.PlaceId))(license)
 			end
 		end
 	end
-	loadstring(downloadFile('catsix/libraries/premium.lua'), 'premium')(license)
+	loadstring(downloadFile('Catv67/libraries/premium.lua'), 'premium')(license)
 	finishLoading()
 else
 	vape.Init = finishLoading

@@ -29,7 +29,7 @@ local function downloadFile(path, func)
 			downloader.Text = 'Downloading '.. path
 		end
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catsix/profiles/commit.txt')..'/'..select(1, path:gsub('catsix/', '')), true)
+			return game:HttpGet('https://raw.githubusercontent.com/amack7002-code/Catv67/'..readfile('Catv67/profiles/commit.txt')..'/'..select(1, path:gsub('Catv67/', '')), true)
 		end)
 		if not suc or res == '404: Not Found' then
 			error(res)
@@ -57,7 +57,7 @@ local function wipeFolder(path)
 end
 
 
-for _, folder in {'catsix', 'catsix/games', 'catsix/profiles', 'catsix/assets', 'catsix/libraries', 'catsix/guis'} do
+for _, folder in {'Catv67', 'Catv67/games', 'Catv67/profiles', 'Catv67/assets', 'Catv67/libraries', 'Catv67/guis'} do
 	if not isfolder(folder) then
 		downloader.Text = 'Downloading '.. folder
 		makefolder(folder)
@@ -68,26 +68,26 @@ if not shared.VapeDeveloper then
 	local commit = license.Commit or nil
 	if not commit then
 		local _, subbed = pcall(function() 
-			return game:HttpGet('https://github.com/MaxlaserTech/CatV6') 
+			return game:HttpGet('https://github.com/amack7002-code/Catv67') 
 		end)
 		commit = subbed:find('currentOid')
 		commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 		commit = commit and #commit == 40 and commit or 'main'
 	end
-	if commit == 'main' or (isfile('catsix/profiles/commit.txt') and readfile('catsix/profiles/commit.txt') or '') ~= commit then
-		if commit ~= 'main' and isfile('catsix/profiles/commit.txt') then
-			shared.updated = readfile('catsix/profiles/commit.txt')
+	if commit == 'main' or (isfile('Catv67/profiles/commit.txt') and readfile('Catv67/profiles/commit.txt') or '') ~= commit then
+		if commit ~= 'main' and isfile('Catv67/profiles/commit.txt') then
+			shared.updated = readfile('Catv67/profiles/commit.txt')
 		end
-		wipeFolder('catsix')
-		wipeFolder('catsix/games')
-		wipeFolder('catsix/guis')
-		wipeFolder('catsix/libraries')
+		wipeFolder('Catv67')
+		wipeFolder('Catv67/games')
+		wipeFolder('Catv67/guis')
+		wipeFolder('Catv67/libraries')
 	end
-	writefile('catsix/profiles/commit.txt', commit)
-	if shared.updated or #listfiles('catsix/profiles') < 4 then
+	writefile('Catv67/profiles/commit.txt', commit)
+	if shared.updated or #listfiles('Catv67/profiles') < 4 then
 		shared.VapePresetInstall = function()
 			local suc, req = pcall(request, {
-				Url = 'https://api.github.com/repos/MaxlaserTech/CatV6/contents/profiles',
+				Url = 'https://api.github.com/repos/amack7002-code/Catv67/contents/profiles',
 				Method = 'GET'
 			})
 			if not suc or req.StatusCode ~= 200 then return false end
@@ -95,7 +95,7 @@ if not shared.VapeDeveloper then
 			if not body or typeof(body) ~= 'table' then return false end
 			local installed = false
 			for _, v in body do
-				if v.type == 'file' and pcall(downloadFile, 'catsix/'.. ({v.path:gsub(' ', '%%20')})[1]) then
+				if v.type == 'file' and pcall(downloadFile, 'Catv67/'.. ({v.path:gsub(' ', '%%20')})[1]) then
 					installed = true
 				end
 			end
@@ -105,4 +105,4 @@ if not shared.VapeDeveloper then
 end
 
 downloader.Text = ''
-return loadstring(downloadFile('catsix/main.lua'), 'main')(license)
+return loadstring(downloadFile('Catv67/main.lua'), 'main')(license)

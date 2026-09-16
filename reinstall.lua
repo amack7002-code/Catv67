@@ -1,1 +1,1 @@
-delfolder('catsix')
+delfolder('cat67')
